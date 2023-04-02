@@ -41,7 +41,7 @@ export const Filters = () => {
       setSelectedPrice([...selectedPrice, value]);
     }
   }
-  console.log(selectedPrice)
+  // console.log(selectedPrice)
   function createQueryParamString(selectedCompany: string[]): string {
     if (selectedCompany.length === 0) {
       return '';

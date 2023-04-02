@@ -1,13 +1,29 @@
-import {useState} from "react";
-import { ProductCards} from "components/pages";
-import {Pagination} from "components/pagination/Pagitation";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
-import './styles/catalogLayout.scss'
+import { ProductCards} from "components/pages";
+import {Pagination} from "components/pages/catalogPage/pagination/Pagitation";
 import {Sidebar} from "components/pages/catalogPage/sidebar/Sidebar";
 
+import {IPagination} from "components/pages/catalogPage/types/ProductDataSchema";
+import {IRootIsLoading, IRootState} from "components/pages/catalogPage/types";
+import './styles/catalogLayout.scss'
+const defaultValue = {
+  current_page: 1,
+  per_page: 12,
+  total_count: 15,
+  total_pages: 2,
+}
 export const CatalogLayout = () => {
+  const data: any = useSelector((data: IRootState) => data.products.items);
+  const [paginationData, setPaginationData] = useState<IPagination>(defaultValue)
   const [currentPage, setCurrentPage] = useState(1);
-  const lastPage = 5;
+  const lastPage = paginationData?.total_pages
+
+  useEffect(() => {
+    setPaginationData(data.pagination)
+  }, [data])
+
 
   return (
     <div className='catalog-grid-container'>

@@ -1,7 +1,7 @@
-import {IProductData, Pagination} from "./ProductDataSchema";
+import {IProductData, IPagination} from "./ProductDataSchema";
 
 export interface IRootState {
-  pagination: Pagination,
+  pagination: IPagination,
   products: {
     items: IProductData[];
   },

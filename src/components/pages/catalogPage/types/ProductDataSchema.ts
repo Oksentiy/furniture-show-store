@@ -17,14 +17,14 @@ export interface AllProductsData {
   price: string
 }
 
-export type Pagination = {
+export interface IPagination {
   current_page:number,
   per_page: number,
-  total_items:number,
+  total_count:number,
   total_pages:number,
 }
 export interface IDataProducts {
-  pagination: Pagination,
+  pagination: IPagination,
   products: IProductData[],
 }
 
