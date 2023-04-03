@@ -1,53 +1,69 @@
 import {ChangeEvent, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from "react-redux";
-import { Dispatch } from 'redux';
-import {store} from "components/store/store";
+import {Dispatch} from 'redux';
 import {setQueryParams} from "components/store/queryParamsSlice";
 import {fetchProducts} from "components/store";
+import {store} from "components/store/store";
 
 export const Filters = () => {
-  const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
-  const [selectedPrice, setSelectedPrice] = useState<string[]>([]);
-  const navigate = useNavigate();
   const dispatch:Dispatch = useDispatch()
+  const currentState = store.getState();
+  const params = currentState.queryParams.queryParams;
+  const navigate = useNavigate()
 
-  // const currentState = store.getState();
-  // const params = currentState.queryParams.queryParams;
+  const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
+  const [minPrice, setMinPrice] = useState<string[]>([]);
+  const [maxPrice, setMaxPrice] = useState<string[]>([]);
 
-  const handleSelectCompany = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>, group: string) => {
     const value = event.target.value;
     const isChecked = event.target.checked;
-    let result: string[];
-    if (isChecked) {
-      result = [...selectedCompany, value];
+    let selectedCompanies: string[] = [...selectedCompany];
+    let lessResult: string[] = [...minPrice];
+    let moreResult: string[] = [...maxPrice];
+
+    if (group === 'company') {
+      if (isChecked) {
+        selectedCompanies = [...selectedCompanies, value];
+      } else {
+        selectedCompanies = selectedCompanies.filter(item => item !== value);
+      }
+      setSelectedCompany(selectedCompanies);
     } else {
-      result = selectedCompany.filter(item => item !== value);
+      const [minimalPrice, maximalPrice] = value.split(',');
+      const less = maximalPrice;
+      const more = minimalPrice;
+
+      if (minPrice.includes(more)) {
+        lessResult = minPrice.filter(item => item !== more);
+      } else {
+        lessResult = [...minPrice, more];
+      }
+      if (maxPrice.includes(less)) {
+        moreResult = maxPrice.filter(item => item !== less);
+      } else {
+        moreResult = [...maxPrice, less];
+      }
+      setMinPrice(lessResult)
+      setMaxPrice(moreResult)
     }
-    setSelectedCompany(result);
-    createQueryParamString(result);
-    const params = createQueryParamString(result);
-    navigate(`?${params}`)
-    dispatch(setQueryParams(params))
+
+    const params = createQueryParam(selectedCompanies, lessResult, moreResult);
+    dispatch(setQueryParams(params));
     // @ts-ignore
-    dispatch(fetchProducts(params)); // передаємо ідентифікатор користувача як аргумент
+    dispatch(fetchProducts(params));
   }
 
-  const handleSelectPrice = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    if (selectedPrice.includes(value)) {
-      setSelectedPrice(selectedPrice.filter(item => item !== value));
-    } else {
-      setSelectedPrice([...selectedPrice, value]);
-    }
-  }
-  // console.log(selectedPrice)
-  function createQueryParamString(selectedCompany: string[]): string {
-    if (selectedCompany.length === 0) {
-      return '';
-    }
-    const companies = selectedCompany.map(company => `${company}`).join(',');
-    return `company_name=${companies}`;
+  function createQueryParam(selectedCompany: string[], minPrice: string[], maxPrice: string[]): string {
+    const companies = selectedCompany?.length > 0 ? `company_name=${selectedCompany.join(',')}` : '';
+    const less = minPrice?.length > 0 ? `price_less_r=${minPrice.join(',')}` : '';
+    const more = maxPrice?.length > 0 ? `price_more_r=${maxPrice.join(',')}` : '';
+
+    const params = [companies, less, more].filter(Boolean).join('&');
+    navigate(`?${params}`)
+
+    return params
   }
 
   return (
@@ -60,7 +76,7 @@ export const Filters = () => {
             type="checkbox"
             value="ikea"
             checked={selectedCompany.includes('ikea')}
-            onChange={handleSelectCompany} />
+            onChange={(event => handleCheckboxChange(event, 'company'))} />
           Ikea
         </label>
         <label>
@@ -68,7 +84,7 @@ export const Filters = () => {
             type="checkbox"
             value="jysk"
             checked={selectedCompany.includes('jysk')}
-            onChange={handleSelectCompany} />
+            onChange={(event => handleCheckboxChange(event, 'company'))} />
           Jysk
         </label>
         <label>
@@ -76,7 +92,7 @@ export const Filters = () => {
             type="checkbox"
             value="blum"
             checked={selectedCompany.includes('blum')}
-            onChange={handleSelectCompany} />
+            onChange={(event => handleCheckboxChange(event, 'company'))} />
           Blum
         </label>
         <label>
@@ -84,7 +100,7 @@ export const Filters = () => {
             type="checkbox"
             value="kolls"
             checked={selectedCompany.includes('kolls')}
-            onChange={handleSelectCompany} />
+            onChange={(event => handleCheckboxChange(event, 'company'))} />
           Kolls
         </label>
       </div>
@@ -93,34 +109,42 @@ export const Filters = () => {
         <label>
           <input
             type="checkbox"
-            value="price_more=1000&price_less=2000"
-            checked={selectedPrice.includes('price_more=1000&price_less=2000')}
-            onChange={handleSelectPrice} />
-          1000-1500
+            value="0,1000"
+            checked={minPrice.includes('0')}
+            onChange={(event => handleCheckboxChange(event, 'price'))} />
+          &#8804; 1000
         </label>
         <label>
           <input
             type="checkbox"
-            value="price_more=2000&price_less=3000"
-            checked={selectedPrice.includes('price_more=2000&price_less=3000')}
-            onChange={handleSelectPrice} />
-          1500-2000
+            value="1000,2000"
+            checked={minPrice.includes('1000')}
+            onChange={(event => handleCheckboxChange(event, 'price'))} />
+          1000-2000
         </label>
         <label>
           <input
             type="checkbox"
-            value="price_more=3000&price_less=4000"
-            checked={selectedPrice.includes('price_more=3000&price_less=4000')}
-            onChange={handleSelectPrice} />
-          2000-2500
+            value="2000,3000"
+            checked={minPrice.includes('2000')}
+            onChange={(event => handleCheckboxChange(event, 'price'))} />
+          2001-3000
         </label>
         <label>
           <input
             type="checkbox"
-            value="price_more=5000"
-            checked={selectedPrice.includes('price_more=5000')}
-            onChange={handleSelectPrice} />
-          2500-3000
+            value={["3000,4000"]}
+            checked={minPrice.includes('3000')}
+            onChange={(event => handleCheckboxChange(event, 'price'))} />
+          3001-4000
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            value="4000,100000"
+            checked={minPrice.includes('4000')}
+            onChange={(event => handleCheckboxChange(event, 'price'))} />
+          4000 &#8805;
         </label>
       </div>
     </div>

@@ -29,7 +29,7 @@ export const Pagination = ({
     // @ts-ignore
     dispatch(fetchProducts(`page=${currentPage}`)); // передаємо ідентифікатор користувача як аргумент
   },[currentPage])
-  console.log(currentPage)
+  // console.log(currentPage)
 
   return (
     <nav className="pagination" aria-label="Pagination">
