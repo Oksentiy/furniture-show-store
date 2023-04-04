@@ -19,4 +19,4 @@ export const queryParamsSlice = createSlice({
 });
 
 export const { setQueryParams } = queryParamsSlice.actions;
-// export default queryParamsSlice.reducer;
+

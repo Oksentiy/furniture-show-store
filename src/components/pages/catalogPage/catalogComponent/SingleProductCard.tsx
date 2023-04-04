@@ -6,7 +6,7 @@ import {IProductData} from "../types";
 import '../styles/singleProductCard.scss'
 
 export const SingleProductCard: FC<IProductData> = ({...data}) => {
-    console.log(data.description)
+
   return (
     <div className='card-container-flex'>
       <Link to={`/products/${data.id}`} className='link'>
@@ -16,9 +16,6 @@ export const SingleProductCard: FC<IProductData> = ({...data}) => {
         <div className='product-description'>
           <p> {data.name} </p>
           <p> від {data.price} грн</p>
-          {/*<button>*/}
-          {/*  <Link to={`/products/${data.id}`} className='link'> Детальніше &#128394; </Link>*/}
-          {/*</button>*/}
         </div>
       </Link>
     </div>

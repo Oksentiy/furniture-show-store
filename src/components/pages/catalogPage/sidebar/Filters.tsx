@@ -3,9 +3,9 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {Dispatch} from 'redux';
 
-import {setQueryParams} from "components/store/queryParamsSlice";
-import {fetchProducts} from "components/store";
-import {store} from "components/store/store";
+import {setQueryParams} from "components/pages/catalogPage/model/slice/queryParamsSlice";
+import {fetchProducts} from "../model/services/getProductDataFromApi";
+import {store} from "store/store";
 
 import '../styles/sidebar.scss'
 

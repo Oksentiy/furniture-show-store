@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProducts } from "components/store";
-import { AllProductsData } from '../pages/catalogPage/types'
-
-interface ProductsState {
-  items: AllProductsData[];
-  isLoading: boolean;
-  error: string | null;
-}
+import { fetchProducts } from "../services/getProductDataFromApi";
+import {ProductsState} from "../types/sliceTypes";
 
 const initialState: ProductsState = {
   items: [],

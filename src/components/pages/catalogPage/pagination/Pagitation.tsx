@@ -1,14 +1,12 @@
+import {Dispatch} from "redux";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+
+import {fetchProducts} from "../model/services/getProductDataFromApi";
 import {PageLink} from './PageLink';
 import { getPaginationItems } from './src/pagination'
 
 import './styles/Pagination.scss';
-import {setQueryParams} from "components/store/queryParamsSlice";
-import {Dispatch} from "redux";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-import {store} from "components/store/store";
-import {fetchProducts} from "components/store";
-import {useNavigate} from "react-router-dom";
 
 export type Props = {
   currentPage: number;
@@ -22,14 +20,14 @@ export const Pagination = ({
    lastPage,
    maxLength,
    setCurrentPage}: Props) => {
-  const navigate = useNavigate()
+
   const dispatch:Dispatch = useDispatch()
   const pageNums = getPaginationItems(currentPage, lastPage, maxLength);
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts(`page=${currentPage}`)); // передаємо ідентифікатор користувача як аргумент
   },[currentPage])
-  // console.log(currentPage)
+
 
   return (
     <nav className="pagination" aria-label="Pagination">

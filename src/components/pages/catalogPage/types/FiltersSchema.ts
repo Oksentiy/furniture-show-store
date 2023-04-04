@@ -12,14 +12,3 @@ export interface IRootIsLoading {
     isLoading: boolean;
   };
 }
-
-export interface ProductRootState {
-  singleProduct: {
-    item: IProductData;
-  };
-}
-export interface IRootIsLoading {
-  singleProduct: {
-    isLoading: boolean;
-  };
-}

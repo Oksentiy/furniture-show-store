@@ -2,7 +2,7 @@ import { useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {sortData} from "components/pages/catalogPage/sidebar/filterAndSortMethods";
-import {setSortedData} from "components/store/productDataSlice";
+import {setSortedData} from "components/pages/catalogPage/model/slice/productDataSlice";
 
 import {IRootState, AllProductsData} from "../types";
 
