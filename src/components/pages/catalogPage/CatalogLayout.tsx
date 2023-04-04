@@ -26,15 +26,19 @@ export const CatalogLayout = () => {
 
 
   return (
-    <div className='catalog-grid-container'>
-      <div className='grid-item-1'>
-        <Sidebar/>
-      </div>
-      <div className='grid-item-2'>
-        <ProductCards/>
-      </div>
-      <div className='grid-item-3'>
-        <Pagination currentPage={currentPage} lastPage={lastPage} maxLength={10} setCurrentPage={setCurrentPage}/>
+    <div className='catalog-layout'>
+      <h1 className="header">ВСІ ТОВАРИ</h1>
+      <p className="product-counter">{paginationData?.total_count} товарів</p>
+      <div className='catalog-grid-container'>
+        <div className='grid-item-3'>
+          <Sidebar/>
+        </div>
+        <div className='grid-item-4'>
+          <ProductCards/>
+        </div>
+        <div className='grid-item-5'>
+          <Pagination currentPage={currentPage} lastPage={lastPage} maxLength={10} setCurrentPage={setCurrentPage}/>
+        </div>
       </div>
     </div>
   )

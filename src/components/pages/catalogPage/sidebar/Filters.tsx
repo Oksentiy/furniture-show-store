@@ -2,14 +2,18 @@ import {ChangeEvent, useState} from "react";
 import {useNavigate} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {Dispatch} from 'redux';
+
 import {setQueryParams} from "components/store/queryParamsSlice";
 import {fetchProducts} from "components/store";
 import {store} from "components/store/store";
 
+import '../styles/sidebar.scss'
+
+
 export const Filters = () => {
   const dispatch:Dispatch = useDispatch()
   const currentState = store.getState();
-  const params = currentState.queryParams.queryParams;
+  // const params = currentState.queryParams.queryParams;
   const navigate = useNavigate()
 
   const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
@@ -67,10 +71,12 @@ export const Filters = () => {
   }
 
   return (
-    <div className="filter_container">
-      <h4>Фільтри</h4>
-      <h4>Виробник</h4>
-      <div>
+    <div className="filter-sort-container">
+      <div className="sm-header-wrapper filter">
+        <h4 className='sort-filter-header '>Фільтри</h4>
+      </div>
+        <h4>Виробник</h4>
+      <div className='sort-filter-btns'>
         <label>
           <input
             type="checkbox"
@@ -105,7 +111,7 @@ export const Filters = () => {
         </label>
       </div>
       <h4>Ціна</h4>
-      <div>
+      <div className='sort-filter-btns'>
         <label>
           <input
             type="checkbox"

@@ -6,6 +6,8 @@ import {setSortedData} from "components/store/productDataSlice";
 
 import {IRootState, AllProductsData} from "../types";
 
+import '../styles/sidebar.scss'
+
 export const Sorting = () => {
   // зараз сортування працює, але оскільки дані стора перезаписуються, то сортуваня за замовчуванням не коректне
   const dispatch = useDispatch()
@@ -29,13 +31,17 @@ export const Sorting = () => {
   };
 
   return (
-    <div className='filter-container-grid'>
-      <h4>Сортування</h4>
-      <button className="sort_btn" onClick={() => handleSelectChange('rate')}>За рейтингом</button>
-      <button className="sort_btn" onClick={() => handleSelectChange('price ascending')}>За зростанням ціни</button>
-      <button className="sort_btn" onClick={() => handleSelectChange('price descending')}>За спаданням ціни</button>
-      <button className="sort_btn" onClick={() => handleSelectChange('A-Z')}>А - Я</button>
-      <button className="sort_btn" onClick={() => handleSelectChange('Z-A')}>Я - А</button>
+    <div className='filter-sort-container'>
+      <div className="sm-header-wrapper">
+        <h4 className='sort-filter-header'>Сортування</h4>
+      </div>
+      <ul className='sort-filter-btns'>
+        <li className="sort_btn" onClick={() => handleSelectChange('rate')}>За рейтингом</li>
+        <li className="sort_btn" onClick={() => handleSelectChange('price ascending')}>За зростанням ціни</li>
+        <li className="sort_btn" onClick={() => handleSelectChange('price descending')}>За спаданням ціни</li>
+        <li className="sort_btn" onClick={() => handleSelectChange('A-Z')}>А - Я</li>
+        <li className="sort_btn" onClick={() => handleSelectChange('Z-A')}>Я - А</li>
+      </ul>
     </div>
   )
 }

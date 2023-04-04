@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {fetchProducts} from "components/store";
-import {AllProductsData} from '../pages/catalogPage/types'
+import { fetchProducts } from "components/store";
+import { AllProductsData } from '../pages/catalogPage/types'
 
 interface ProductsState {
   items: AllProductsData[];
@@ -9,7 +9,7 @@ interface ProductsState {
 }
 
 const initialState: ProductsState = {
-  items: [], // maybe set null latter повернути на пустий масив []
+  items: [],
   isLoading: false,
   error: null,
 };
