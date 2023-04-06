@@ -8,6 +8,7 @@ import {Sidebar} from "components/pages/catalogPage/sidebar/Sidebar";
 import {IPagination} from "components/pages/catalogPage/types/ProductDataSchema";
 import {IRootIsLoading, IRootState} from "components/pages/catalogPage/types";
 import './styles/catalogLayout.scss'
+
 const defaultValue = {
   current_page: 1,
   per_page: 12,

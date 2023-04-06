@@ -1,0 +1,146 @@
+.card-container-grid{
+  margin-top: 137px;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  height: 1129px;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  //grid-template-columns: 1fr 1fr;
+  .img-container{
+    max-width: 982px;
+    border: 1px solid #D1C7A3;
+  }
+  .product-img{
+    display: flex;
+    max-width: 916px;
+    height: 916px;
+  }
+  .info-container{
+    max-width: 938px;
+    padding: 40px 22px 0 161px;
+  }
+  h4{
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+  }
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+}
+
+// radio btns choose color
+
+.radio-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .radio-color {
+    width: 142px;
+    height: 56px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border: 1px solid #D1C7A3;
+    border-radius: 5px;
+
+    &:has(input:checked) {
+      background-color: #645832;
+    }
+  }
+}
+
+.label-wrapper{
+  width: 56px;
+  height: 56px;
+  border: 2px solid #D1C7A3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:has(input:checked) {
+    border: 2px solid #1F1F1F;
+  }
+}
+
+.selection {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: calc(var(--container_width) / 3);
+  z-index: 0;
+  left: 0;
+  top: 0;
+  transition: .15s ease;
+}
+
+//input
+.input-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 20px;
+
+  input{
+    width: 330px;
+    height: 56px;
+    padding: 15px;
+    border: 1px solid #D1C7A3;
+    border-radius: 5px;
+  }
+}
+
+form {
+  .delete-field-btn{
+    width: 56px;
+    height: 56px;
+    border: 1px solid #D1C7A3;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .add-field-btn{
+    width: 756px;
+    height: 56px;
+    border-radius: 5px;
+    border: 1px solid #D1C7A3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  button{
+    width: 756px;
+    height: 56px;
+    border-radius: 5px;
+    border: 1px solid #D1C7A3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+  }
+}
