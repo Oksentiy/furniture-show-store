@@ -7,7 +7,6 @@
   width: auto;
   display: flex;
   flex-wrap: wrap;
-  //grid-template-columns: 1fr 1fr;
   .img-container{
     max-width: 982px;
     border: 1px solid #D1C7A3;
@@ -29,6 +28,66 @@
 .form-container{
   display: flex;
   flex-direction: column;
+}
+
+// checkbox company
+.checkbox-company-wrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 29px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkmark {
+      background-color: #645832;
+    }
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  height: 24px;
+  width: 24px;
+  background-color: #EBE6D7;
+  border: 1px solid #645832;
+  border-radius: 5px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #EBE6D7;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
 }
 
 // radio btns choose color
@@ -122,6 +181,9 @@ form {
     justify-content: center;
     align-items: center;
   }
+  &:hover{
+    cursor: pointer;
+  }
   .add-field-btn{
     width: 756px;
     height: 56px;
@@ -141,6 +203,8 @@ form {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-
+  }
+  &:hover{
+    cursor: pointer;
   }
 }

@@ -73,18 +73,20 @@ export const ProductCard: FC = () => {
             <form className="form-container">
               <>
                 <legend>Виробник</legend>
-                <div className="companies"></div>
-                {companies.map((company, index) => (
-                  <label key={index}>
-                    <input type="checkbox" name={company} value={company}/>
-                    {company}
-                  </label>
-                  ))}
+                <div className="checkbox-company-wrapper">
+                  {companies.map((company, index) => (
+                    <label className="container" key={index}>
+                      <input type="checkbox" name={company} value={company}/>
+                      {company}
+                      <span className="checkmark"/>
+                    </label>
+                    ))}
+                </div>
                 <legend>Колір плівки </legend>
                 <div className="radio-input">
                   {colors.map((color, index) =>
-                    <div className="label-wrapper">
-                      <label style={{backgroundColor: `${color.hex}`}} key={index}>
+                    <div className="label-wrapper" key={index}>
+                      <label style={{backgroundColor: `${color.hex}`}} >
                         <input type="radio" id={color.name} name="value-radio" value={color.hex}/>
                         <span/>
                       </label>
