@@ -6,10 +6,11 @@ import {ProductData, ProductRootState, IRootIsLoading} from "./types/singleProdu
 import {fetchProduct} from "components/pages/singleProductPage/model/services/getSingleProduct";
 import {useParams} from "react-router-dom";
 import './styles/productCard.scss'
+import {Form} from "components/pages/singleProductPage/Form";
 
 const colors:Color[] = [
   {name: "Коричневий матовий", hex: "#252121"},
-  {name: "Димний беж", hex: "#252121"},
+  {name: "Димний беж", hex: "#A49A90"},
   {name: "Ментоловий", hex: "#B6C2AE"},
   {name: "Глибокий синій", hex: "#2B313F"},
   {name: "Світлий персик", hex: "#ECD6C6"},
@@ -25,13 +26,6 @@ type Color = {
   name:string,
   hex:string
 }
-type FormData = {
-  store: string[];
-  color: string[];
-  thickness: string;
-  height: string;
-  width: string;
-};
 
 export const ProductCard: FC = () => {
 
@@ -46,14 +40,6 @@ export const ProductCard: FC = () => {
     dispatch(fetchProduct(id))
   }, [])
 
-  const [formData, setFormData] = useState<FormData>({
-    store: [],
-    color: [],
-    thickness: '',
-    height: '',
-    width: '',
-  });
-  console.log(productData)
 
   return (
     <>
@@ -70,57 +56,7 @@ export const ProductCard: FC = () => {
               З'єднайте зі скляними дверцятами SINDVIK, щоб створити повне рішення для зберігання і експонування.
             </p>
             <p>Від {productData.price}</p>
-            <form className="form-container">
-              <>
-                <legend>Виробник</legend>
-                <div className="checkbox-company-wrapper">
-                  {companies.map((company, index) => (
-                    <label className="container" key={index}>
-                      <input type="checkbox" name={company} value={company}/>
-                      {company}
-                      <span className="checkmark"/>
-                    </label>
-                    ))}
-                </div>
-                <legend>Колір плівки </legend>
-                <div className="radio-input">
-                  {colors.map((color, index) =>
-                    <div className="label-wrapper" key={index}>
-                      <label style={{backgroundColor: `${color.hex}`}} >
-                        <input type="radio" id={color.name} name="value-radio" value={color.hex}/>
-                        <span/>
-                      </label>
-                    </div>
-                  )}
-                  <span className="selection"/>
-                </div>
-                <legend>Товщина фасаду:</legend>
-                <div className="radio-input">
-                  {thickness.map((value, index) =>
-                    <label key={index} className="radio-color">
-                      <input type="radio" name="thickness" value={value} />{value} мм
-                    </label>
-                  )}
-                </div>
-                <div className="input-wrapper">
-                  <div>
-                    <legend>Висота фасаду (мм)</legend>
-                    <label>
-                      <input type="text" name="height" />
-                    </label>
-                  </div>
-                  <div>
-                    <legend>Ширина фасаду (мм)</legend>
-                    <label>
-                      <input type="text" name="width" />
-                    </label>
-                  </div>
-                  <span className="delete-field-btn">&mdash;</span>
-                </div>
-                <span className="add-field-btn">&#43; додати розміри</span>
-                <button type="submit">Розрахувати вартість</button>
-              </>
-            </form>
+            <Form companies={companies} colors={colors} thickness={thickness}/>
           </div>
         </div>
       }

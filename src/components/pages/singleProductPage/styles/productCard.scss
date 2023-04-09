@@ -158,9 +158,17 @@
 //input
 .input-wrapper{
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
+  //align-items: flex-end;
   gap: 20px;
+
+  .input-group{
+    display: flex;
+    justify-content: flex-start;
+    //align-items: flex-end;
+    gap: 20px;
+  }
 
   input{
     width: 330px;
@@ -168,43 +176,5 @@
     padding: 15px;
     border: 1px solid #D1C7A3;
     border-radius: 5px;
-  }
-}
-
-form {
-  .delete-field-btn{
-    width: 56px;
-    height: 56px;
-    border: 1px solid #D1C7A3;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &:hover{
-    cursor: pointer;
-  }
-  .add-field-btn{
-    width: 756px;
-    height: 56px;
-    border-radius: 5px;
-    border: 1px solid #D1C7A3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  button{
-    width: 756px;
-    height: 56px;
-    border-radius: 5px;
-    border: 1px solid #D1C7A3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  &:hover{
-    cursor: pointer;
   }
 }
