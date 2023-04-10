@@ -4,17 +4,17 @@ export type Color = {
 }
 
 export interface MyComponentProps {
-  companies: string[];
   colors: Color[];
   thickness: string[];
 }
-export type Size = {
+// export type Size = {
+//   height: string;
+//   width: string;
+// }
+export type FormData = {
+  color: string;
+  thickness: string;
   height: string;
   width: string;
-}
-export type FormData = {
-  store: [];
-  color: string[];
-  thickness: string;
-  size: Size[]
+  count?: string;
 };

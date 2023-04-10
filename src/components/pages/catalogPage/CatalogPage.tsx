@@ -2,11 +2,10 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
 import { ProductCards} from "components/pages";
-import {Pagination} from "components/pages/catalogPage/pagination/Pagitation";
-import {Sidebar} from "components/pages/catalogPage/sidebar/Sidebar";
+import {Pagination} from "./pagination";
+import {Sidebar} from "./sidebar";
+import {IPagination, IRootState} from "components/pages/catalogPage/types";
 
-import {IPagination} from "components/pages/catalogPage/types/ProductDataSchema";
-import {IRootIsLoading, IRootState} from "components/pages/catalogPage/types";
 import './styles/catalogLayout.scss'
 
 const defaultValue = {
@@ -15,7 +14,7 @@ const defaultValue = {
   total_count: 15,
   total_pages: 2,
 }
-export const CatalogLayout = () => {
+export const CatalogPage = () => {
   const data: any = useSelector((data: IRootState) => data.products.items);
   const [paginationData, setPaginationData] = useState<IPagination>(defaultValue)
   const [currentPage, setCurrentPage] = useState(1);

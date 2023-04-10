@@ -1,0 +1,15 @@
+.product-page-layout{
+  font-family: 'Open Sans', sans-serif;
+  background-color: #EBE6D7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: auto;
+  gap: 40px;
+
+  h2{
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+  }
+}

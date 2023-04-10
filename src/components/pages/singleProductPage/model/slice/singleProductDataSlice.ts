@@ -29,7 +29,7 @@ const singleProductSlice = createSlice({
     builder.addCase(fetchProduct.rejected, (state, action) => {
       state.item = initialState.item;
       state.isLoading = false;
-      state.error = action.payload?.toString() || 'Failed to fetch products';
+      state.error = action.payload?.toString() || 'Failed to fetch product';
     });
   },
 });

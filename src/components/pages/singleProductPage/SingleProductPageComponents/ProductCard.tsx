@@ -1,12 +1,12 @@
-import {ChangeEvent, FC, FormEvent, useEffect, useState} from "react";
+import { FC, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-// import {setProductData} from 'components/pages/singleProductPage/model/slice/singleProductDataSlice'
-
-import {ProductData, ProductRootState, IRootIsLoading} from "./types/singleProductSchema";
-import {fetchProduct} from "components/pages/singleProductPage/model/services/getSingleProduct";
 import {useParams} from "react-router-dom";
-import './styles/productCard.scss'
-import {Form} from "components/pages/singleProductPage/Form";
+// import {setProductData} from 'SingleProductPageComponents/pages/singleProductPage/model/slice/singleProductDataSlice'
+import {ProductData, ProductRootState, IRootIsLoading} from "../types";
+import {fetchProduct} from "components/pages";
+import {Form} from "components/pages";
+
+import '../styles/productCard.scss'
 
 const colors:Color[] = [
   {name: "Коричневий матовий", hex: "#252121"},
@@ -20,7 +20,6 @@ const colors:Color[] = [
   {name: "Пудровий", hex: "#D4CCC0"},
   {name: "Какао", hex: "#736154"}
 ]
-const companies:string[] = ['IKEA', 'JYSK', 'BLUM', 'KOLSS']
 const thickness:string[] = ["16", "18"]
 type Color = {
   name:string,
@@ -28,7 +27,6 @@ type Color = {
 }
 
 export const ProductCard: FC = () => {
-
   const productData: ProductData = useSelector((data: ProductRootState) => data.singleProduct.item);
   const isLoading: boolean = useSelector((data: IRootIsLoading) => data.singleProduct.isLoading)
   const dispatch = useDispatch()
@@ -39,7 +37,6 @@ export const ProductCard: FC = () => {
     // @ts-ignore
     dispatch(fetchProduct(id))
   }, [])
-
 
   return (
     <>
@@ -55,8 +52,10 @@ export const ProductCard: FC = () => {
               Дверцята можна встановити справа або зліва. Дверцята спростовують зміст і захищають її від пилу.
               З'єднайте зі скляними дверцятами SINDVIK, щоб створити повне рішення для зберігання і експонування.
             </p>
-            <p>Від {productData.price}</p>
-            <Form companies={companies} colors={colors} thickness={thickness}/>
+            <p>{productData.price} грн м&sup2;</p>
+            <p>Виробник: </p>
+            <p>{productData.company}</p>
+            <Form colors={colors} thickness={thickness}/>
           </div>
         </div>
       }

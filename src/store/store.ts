@@ -3,6 +3,7 @@ import productsReducer from '../components/pages/catalogPage/model/slice/product
 import singleProductReducer from '../components/pages/singleProductPage/model/slice/singleProductDataSlice'
 import {queryParamsSlice} from "components/pages/catalogPage/model/slice/queryParamsSlice";
 import {fetchProducts} from "components/pages/catalogPage/model/services/getProductDataFromApi";
+import {fetchProduct} from "components/pages";
 
 export const store = configureStore({
   reducer: {
@@ -13,3 +14,4 @@ export const store = configureStore({
 });
 
 store.dispatch(fetchProducts());
+store.dispatch(fetchProduct());
