@@ -21,7 +21,6 @@ export const RecommendedProducts = () => {
           <SingleProductCard key={index} {...data} />
         ))
       }
-
     </div>
   )
 }

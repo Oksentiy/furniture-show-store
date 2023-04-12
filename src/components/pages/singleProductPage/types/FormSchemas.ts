@@ -4,13 +4,11 @@ export type Color = {
 }
 
 export interface MyComponentProps {
+  price: string | number;
   colors: Color[];
   thickness: string[];
 }
-// export type Size = {
-//   height: string;
-//   width: string;
-// }
+
 export type FormData = {
   color: string;
   thickness: string;

@@ -6,8 +6,15 @@
   align-items: center;
   width: auto;
   height: auto;
-  gap: 40px;
-
+  //gap: 40px;
+  .title-recommended {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #D1C7A3;
+    width: 1920px;
+    padding: 40px 0;
+  }
   h2{
     font-size: 52px;
     font-family: 'Playfair Display', serif;

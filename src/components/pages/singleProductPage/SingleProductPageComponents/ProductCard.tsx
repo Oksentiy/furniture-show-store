@@ -55,7 +55,7 @@ export const ProductCard: FC = () => {
             <p>{productData.price} грн м&sup2;</p>
             <p>Виробник: </p>
             <p>{productData.company}</p>
-            <Form colors={colors} thickness={thickness}/>
+            <Form colors={colors} thickness={thickness} price={productData.price}/>
           </div>
         </div>
       }
