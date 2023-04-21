@@ -1,18 +1,31 @@
-import {useForm, SubmitHandler} from 'react-hook-form';
-
-import {MyComponentProps, FormData} from "components/pages";
 import {ChangeEvent, useEffect, useRef, useState} from "react";
-import {calculatePrice} from "components/pages/singleProductPage/SingleProductPageComponents/methods/calcPrice";
-import '../styles/form.scss'
+import {useForm, SubmitHandler} from 'react-hook-form';
+import {useSelector, useDispatch} from "react-redux";
 
-export const Form = ({colors, thickness, price}: MyComponentProps) => {
+import {Price} from "../types";
+import {FormData, ProductData, ProductRootState, fetchProduct} from "components/pages";
+import {calculatePrice} from "components/pages/singleProductPage/SingleProductPageComponents/methods/calcPrice";
+
+import '../styles/form.scss'
+import {useParams} from "react-router-dom";
+
+type Props = {
+  setPrice: (data: number) => void,
+  priceForThickness: number
+}
+
+export const Form = ({setPrice, priceForThickness}: Props) => {
+  const productData: ProductData = useSelector((data: ProductRootState) => data.singleProduct.item);
   const countRef = useRef<HTMLParagraphElement>(null);
+  const dispatch = useDispatch()
+  const params = useParams()
+  const {id} = params
+
   const [finalPrice, setFinalPrice] = useState<number>()
   const [dataForPrice, setDataForPrice] = useState({
     count: 1,
     height: 0,
     width: 0,
-    price,
   })
 
   const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm<FormData>({
@@ -26,17 +39,22 @@ export const Form = ({colors, thickness, price}: MyComponentProps) => {
   });
 
   useEffect(() => {
-    setValue("count", String(dataForPrice.count) )
+    // @ts-ignore
+    dispatch(fetchProduct(id))
+  }, [])
+
+  useEffect(() => {
+    setValue("count", String(dataForPrice.count))
   }, [dataForPrice.count])
 
   useEffect(() => {
-    setTimeout(() => {
-      const price = calculatePrice(dataForPrice.price ,dataForPrice.height, dataForPrice.width, dataForPrice.count)
-      setFinalPrice(price)
-    },1500)
-  }, [dataForPrice])
+    const price = calculatePrice(
+      priceForThickness !== undefined ?
+        priceForThickness :
+        +productData?.prices[0].price, dataForPrice.height, dataForPrice.width, dataForPrice.count)
+    setFinalPrice(price)
 
-  console.log(finalPrice)
+  }, [dataForPrice, priceForThickness])
 
   const handleIncrement = () => {
     setDataForPrice((prevState) => ({
@@ -53,13 +71,11 @@ export const Form = ({colors, thickness, price}: MyComponentProps) => {
   };
 
   const handleSetDataForPriceCalc = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setTimeout(() => {
-      setDataForPrice((prevState) => ({
-        ...prevState,
-        [name]: Number(value)
-      }));
-    }, 1500)
+    const {name, value} = event.target;
+    setDataForPrice((prevState) => ({
+      ...prevState,
+      [name]: Number(value)
+    }));
   };
 
 
@@ -71,97 +87,108 @@ export const Form = ({colors, thickness, price}: MyComponentProps) => {
       height: 0,
       width: 0
     }));
+    console.log(data)
   };
 
   return (
     <form className="form-container" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-      <>
-        <legend>Колір плівки</legend>
-        <div className="radio-input">
-          {colors.map((color, index) =>
-            <div className="label-wrapper" key={index}>
-              <label style={{backgroundColor: `${color.hex}`}}>
+      {productData !== undefined &&
+        <>
+          <legend className='legend'>Колір плівки</legend>
+          <div className="radio-input">
+            {productData.colors.map((color, index) =>
+              <div className="label-wrapper" key={index}>
+                <label style={{backgroundColor: `${color.hex}`}}>
+                  <input
+                    type="radio"
+                    id={color.name}
+                    name="value-radio"
+                    value={color.hex}
+                    {...register("color", {required: true,})}/>
+                  <span/>
+                </label>
+              </div>
+            )}
+            <span className="selection"/>
+          </div>
+          {errors.color && <small style={{color: "red", fontSize: "12px"}}>Оберіть колір плівки</small>}
+          <legend className='legend'>Товщина фасаду:</legend>
+          <div className="radio-input">
+            {productData.prices.map((value, index) =>
+              <label key={index} className="radio-thickness">
                 <input
                   type="radio"
-                  id={color.name}
-                  name="value-radio"
-                  value={color.hex}
-                  {...register("color", {required: true,})}/>
-                <span/>
+                  name="thickness"
+                  value={value.thickness}
+                  defaultChecked
+                  // checked={value.thickness === '16'}
+                  onClick={() => setPrice(+value.price)}
+                  {...register("thickness", {required: true})}
+                />{value.thickness} мм
               </label>
-            </div>
-          )}
-          <span className="selection"/>
-        </div>
-        {errors.color && <small style={{color: "red", fontSize: "12px"}}>Оберіть колір плівки</small>}
-        <legend>Товщина фасаду:</legend>
-        <div className="radio-input">
-          {thickness.map((value, index) =>
-            <label key={index} className="radio-thickness">
-              <input
-                type="radio"
-                name="thickness"
-                value={value}
-                {...register("thickness", {required: true})}
-              />{value} мм
-            </label>
-          )}
-        </div>
-        {errors.thickness && <small style={{color: "red", fontSize: "12px"}}>Оберіть товщину фасаду</small>}
-        <div className="input-wrapper">
-          <div className="input-group">
-            <div className='input-info'>
-              <legend>Висота фасаду (мм)</legend>
-              <label>
-                <input
-                  type="text"
-                  name="height"
-                  onInput={handleSetDataForPriceCalc}
-                  {...register(`height`, {required: true, pattern: /^\d+$/, min: 500})}
-                />
-              </label>
-              {errors.height && (
-                <small style={{color: "red", fontSize: "12px"}}>
-                  Мінімальна висота 500
-                </small>
-              )}
-              {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-            </div>
-            <div className='input-info'>
-              <legend>Ширина фасаду (мм)</legend>
-              <label>
-                <input
-                  type="text"
-                  name="width"
-                  onInput={handleSetDataForPriceCalc}
-                  {...register(`width`, {required: true, pattern: /^\d+$/, min: 500})}
-                />
-              </label>
-              {errors.width && (
-                <small style={{color: "red", fontSize: "12px"}}>
-                  Мінімальна ширина 500
-                </small>
-              )}
-              {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-            </div>
-            <div className='counter-container'>
-              <button type='button' className="counter-btn" onClick={handleDecrement}>-</button>
-              <p ref={countRef}>{dataForPrice.count}</p>
-              <input
-                type="hidden"
-                name="count"
-                {...register("count")}
-              />
-              <button type='button' className="counter-btn" onClick={handleIncrement}>+</button>
-              {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-              {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-              {errors.count && <small style={{color: "red", fontSize: "12px"}}>Мінімум 1</small>}
+            )}
+          </div>
+          {errors.thickness && <small style={{color: "red", fontSize: "12px"}}>Оберіть товщину фасаду</small>}
+          <div className="input-wrapper">
+            <div className="input-group">
+              <div className='input-info'>
+                <legend className='legend-size'>Висота фасаду (мм)</legend>
+                <label>
+                  <input
+                    type="text"
+                    name="height"
+                    onInput={handleSetDataForPriceCalc}
+                    {...register(`height`, {required: true, pattern: /^\d+$/, min: 500})}
+                  />
+                </label>
+                {errors.height && (
+                  <small style={{color: "red", fontSize: "12px"}}>
+                    Мінімальна висота 500
+                  </small>
+                )}
+                {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+              </div>
+              <div className='input-info'>
+                <legend className='legend-size'>Ширина фасаду (мм)</legend>
+                <label>
+                  <input
+                    type="text"
+                    name="width"
+                    onInput={handleSetDataForPriceCalc}
+                    {...register(`width`, {required: true, pattern: /^\d+$/, min: 500})}
+                  />
+                </label>
+                {errors.width && (
+                  <small style={{color: "red", fontSize: "12px"}}>
+                    Мінімальна ширина 500
+                  </small>
+                )}
+                {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+              </div>
+              <div className="counter-wrapper " style={{display: 'flex', flexDirection: 'column'}}>
+                <legend style={{fontSize: '18px', visibility: 'hidden'}}>hidden text</legend>
+                <div className='counter-container'>
+                  <button type='button' className="counter-btn" onClick={handleDecrement}>-</button>
+                  <p ref={countRef}>{dataForPrice.count}</p>
+                  <input
+                    type="hidden"
+                    name="count"
+                    {...register("count")}
+                  />
+                  <button type='button' className="counter-btn" onClick={handleIncrement}>+</button>
+                </div>
+                  {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                  {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                  {errors.count && <small style={{color: "red", fontSize: "12px"}}>Мінімум 1</small>}
+              </div>
             </div>
           </div>
-        </div>
-        <p className="final-price">{finalPrice ? finalPrice : "0"} грн</p>
-        <button type="submit">Додати в кошик</button>
-      </>
+          <div className='submit-wrapper'>
+            <button type="submit">Додати в кошик</button>
+            <p className="final-price">{finalPrice ? finalPrice : "0"} грн</p>
+          </div>
+        </>
+      }
     </form>
   )
 }

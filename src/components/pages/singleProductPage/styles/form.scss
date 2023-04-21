@@ -1,13 +1,18 @@
 form {
+  legend{
+    margin-bottom: 10px;
+  }
+  .legend{
+    margin-top: 46px;
+  }
   button{
-    width: 756px;
+    width: 575px;
     height: 56px;
     border-radius: 5px;
     border: 1px solid #D1C7A3;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
     font-size: 18px;
     text-transform: uppercase;
     color: #EFEAE7;
@@ -15,6 +20,19 @@ form {
 
     &:hover{
       cursor: pointer;
+    }
+  }
+  .submit-wrapper{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 38px;
+
+    p{
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 500;
+      color: #645832;
     }
   }
 }
@@ -29,8 +47,9 @@ form {
   .input-group{
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
     gap: 20px;
+    margin-top: 40px;
   }
   .input-info{
     display: flex;
@@ -38,7 +57,7 @@ form {
   }
 
   input{
-    width: 239px;
+    width: 277.5px;
     height: 56px;
     padding: 15px;
     border: 1px solid #D1C7A3;
@@ -55,11 +74,19 @@ form {
   align-items: center;
   align-self: flex-start;
   gap: 22px;
-  padding-top: 6px;
+  box-sizing: border-box;
+  height: 56px;
+  width: 161px;
+  //padding-top: 6px;
+  border: 1px solid #D1C7A3;
+  border-radius: 5px;
 
   .counter-btn{
-    width: 56px;
-    height: 56px;
+    //width: 53px;
+    //height: 53px;
+    background-color: transparent;
+    color: #645832;
+    border: none;
   }
 }
 

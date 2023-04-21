@@ -2,7 +2,7 @@ import {FC, useState, useEffect} from "react";
 import { useSelector } from 'react-redux';
 import {ThreeDots } from 'react-loader-spinner'
 
-import { SingleProductCard} from 'components/pages'
+import {SingleProductCard} from "components/reusableComponents/singleProductCatd/SingleProductCard";
 import {IRootIsLoading, IRootState} from "../types";
 import '../styles/productCards.scss'
 

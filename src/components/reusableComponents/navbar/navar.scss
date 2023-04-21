@@ -1,0 +1,111 @@
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: 1920px;
+  background-color: #EBE6D7;
+  height: 76px;
+  padding: 0 22px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid #D1C7A3;
+
+  &__burger-menu {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+
+    &__line {
+      height: 3px;
+      width: 100%;
+      background-color: #333;
+      margin-bottom: 3px;
+    }
+  }
+
+  &__menu {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    height: 611px;
+    background-color: #EBE6D7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    padding: 120px 0 0 80px;
+
+    &__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 400;
+      margin: 20px 20px 10px;
+    }
+
+    &__links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      & li {
+        margin: 0 20px;
+        padding: 10px 0;
+
+        & a {
+          color: #1F1F1F;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 17px;
+          font-weight: 400;
+
+          &:hover {
+            color: #666;
+          }
+        }
+      }
+    }
+    &.open {
+      visibility: visible;
+    }
+  }
+}
+.nav-wrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 30px;
+}
+.catalog-link a{
+  text-decoration: none;
+  color: #1F1F1F;
+}
+.logo h3{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+}
+.auth-and-basket-wrapper{
+  display: flex;
+  .authorize-btn button{
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-weight: bold;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+
+

@@ -9,11 +9,17 @@ import {store} from "store/store";
 
 import '../styles/sidebar.scss'
 
+const COMPANIES = ['ikea', 'jysk', 'kolls', 'blum']
+const PRICES = [
+  {priceInclude: '0', value: '0, 1000', outputPrice: 'до 1000'},
+  {priceInclude: '1000', value: '1000, 2000', outputPrice: 'від 1001 до 2000'},
+  {priceInclude: '2000', value: '2000, 3000', outputPrice: 'від 2001 до 3000'},
+  {priceInclude: '3000', value: '3000, 4000', outputPrice: 'від 3001 до 4000'},
+  {priceInclude: '4000', value: '4000, 10000', outputPrice: 'від 4000 і більше'}
+]
 
 export const Filters = () => {
   const dispatch:Dispatch = useDispatch()
-  const currentState = store.getState();
-  // const params = currentState.queryParams.queryParams;
   const navigate = useNavigate()
 
   const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
@@ -75,83 +81,36 @@ export const Filters = () => {
       <div className="sm-header-wrapper filter">
         <h4 className='sort-filter-header '>Фільтри</h4>
       </div>
-        <h4>Виробник</h4>
+        <h4 className='company-filter-title'>Виробник</h4>
       <div className='sort-filter-btns'>
-        <label>
-          <input
-            type="checkbox"
-            value="ikea"
-            checked={selectedCompany.includes('ikea')}
-            onChange={(event => handleCheckboxChange(event, 'company'))} />
-          Ikea
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="jysk"
-            checked={selectedCompany.includes('jysk')}
-            onChange={(event => handleCheckboxChange(event, 'company'))} />
-          Jysk
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="blum"
-            checked={selectedCompany.includes('blum')}
-            onChange={(event => handleCheckboxChange(event, 'company'))} />
-          Blum
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="kolls"
-            checked={selectedCompany.includes('kolls')}
-            onChange={(event => handleCheckboxChange(event, 'company'))} />
-          Kolls
-        </label>
+        {COMPANIES.map((company, index) => (
+          <label className="container" key={index}>
+            <input
+              type="checkbox"
+              name={company}
+              value={company}
+              checked={selectedCompany.includes(`${company}`)}
+              onChange={(event => handleCheckboxChange(event, 'company'))}
+            />
+            {company}
+            <span className="checkmark"/>
+          </label>
+        ))}
       </div>
       <h4>Ціна</h4>
       <div className='sort-filter-btns'>
-        <label>
-          <input
-            type="checkbox"
-            value="0,1000"
-            checked={minPrice.includes('0')}
-            onChange={(event => handleCheckboxChange(event, 'price'))} />
-          &#8804; 1000
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="1000,2000"
-            checked={minPrice.includes('1000')}
-            onChange={(event => handleCheckboxChange(event, 'price'))} />
-          1000-2000
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="2000,3000"
-            checked={minPrice.includes('2000')}
-            onChange={(event => handleCheckboxChange(event, 'price'))} />
-          2001-3000
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value={["3000,4000"]}
-            checked={minPrice.includes('3000')}
-            onChange={(event => handleCheckboxChange(event, 'price'))} />
-          3001-4000
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="4000,100000"
-            checked={minPrice.includes('4000')}
-            onChange={(event => handleCheckboxChange(event, 'price'))} />
-          4000 &#8805;
-        </label>
+        {PRICES.map((price, index) => (
+          <label className="container" key={index}>
+            <input
+              type="checkbox"
+              value={price.value}
+              checked={minPrice.includes(`${price.priceInclude}`)}
+              onChange={(event => handleCheckboxChange(event, 'price'))}
+            />
+            {price.outputPrice}
+            <span className="checkmark"/>
+          </label>
+        ))}
       </div>
     </div>
   )

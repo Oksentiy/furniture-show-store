@@ -10,14 +10,13 @@ export const RecommendedProducts = () => {
   const data:any = useSelector((data: IRootState) => data.products.items);
 
   useEffect(() => {
-    setProducts(data.products.slice(0,4))
+    setProducts(data.products)
   },[data.products])
-  console.log(productsData)
 
   return (
     <div className='recommended-products'>
-      { productsData.length &&
-        productsData.map((data:any, index: number) => (
+      { productsData?.length &&
+        productsData.slice(0,4).map((data:any, index: number) => (
           <SingleProductCard key={index} {...data} />
         ))
       }

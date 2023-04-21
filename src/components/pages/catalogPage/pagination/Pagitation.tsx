@@ -35,7 +35,7 @@ export const Pagination = ({
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}
       >
-        Previous
+        &#x276E;
       </PageLink>
       {pageNums.map((pageNum, idx) => (
         <PageLink
@@ -51,7 +51,7 @@ export const Pagination = ({
         disabled={currentPage === lastPage}
         onClick={() => setCurrentPage(currentPage + 1)}
       >
-        Next
+        &#x276F;
       </PageLink>
     </nav>
   );
