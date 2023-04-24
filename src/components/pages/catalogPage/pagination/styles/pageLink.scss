@@ -1,10 +1,14 @@
 .page-link {
   position: relative;
   display: inline-flex;
-  border: 1px solid #dee2e6;
-  background-color: #ffffff;
-  padding: 10px 15px;
-  color: #0d6efd;
+  justify-content: center;
+  align-items: center;
+  width: 54px;
+  height: 54px;
+  border: 1px solid #D1C7A3;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #000000;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -14,13 +18,11 @@
 }
 
 .page-link:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border: none;
 }
 
 .page-link:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: none;
 }
 
 .page-link:not(:first-child) {
@@ -29,8 +31,8 @@
 
 .page-link:hover,
 .page-link:focus {
-  color: #0a58ca;
-  background-color: #e9ecef;
+  color: #D1C7A3;
+  background-color: #645832;
 }
 
 .page-link:focus {
@@ -39,9 +41,8 @@
 
 .page-link.active {
   z-index: 2;
-  color: #ffffff;
-  border-color: #0d6efd;
-  background-color: #0d6efd;
+  color: #D1C7A3;
+  background-color: #645832;
 }
 
 .page-link.disabled {

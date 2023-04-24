@@ -2,7 +2,7 @@ import { useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {sortData} from "components/pages/catalogPage/sidebar/filterAndSortMethods";
-import {setSortedData} from "components/store/productDataSlice";
+import {setSortedData} from "components/pages/catalogPage/model/slice/productDataSlice";
 
 import {IRootState, AllProductsData} from "../types";
 
@@ -35,8 +35,9 @@ export const Sorting = () => {
       <div className="sm-header-wrapper">
         <h4 className='sort-filter-header'>Сортування</h4>
       </div>
-      <ul className='sort-filter-btns'>
-        <li className="sort_btn" onClick={() => handleSelectChange('rate')}>За рейтингом</li>
+
+      <ul className='sort-filter-btns sort'>
+        <li className="sort_btn" onClick={() => handleSelectChange('rate')}>Спочатку нові</li>
         <li className="sort_btn" onClick={() => handleSelectChange('price ascending')}>За зростанням ціни</li>
         <li className="sort_btn" onClick={() => handleSelectChange('price descending')}>За спаданням ціни</li>
         <li className="sort_btn" onClick={() => handleSelectChange('A-Z')}>А - Я</li>

@@ -1,0 +1,92 @@
+form {
+  legend{
+    margin-bottom: 10px;
+  }
+  .legend{
+    margin-top: 46px;
+  }
+  button{
+    width: 575px;
+    height: 56px;
+    border-radius: 5px;
+    border: 1px solid #D1C7A3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #EFEAE7;
+    background-color: #645832;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .submit-wrapper{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 38px;
+
+    p{
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 600;
+      color: #645832;
+    }
+  }
+}
+
+.input-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  //align-items: flex-end;
+  gap: 20px;
+
+  .input-group{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .input-info{
+    display: flex;
+    flex-direction: column;
+  }
+
+  input{
+    width: 277.5px;
+    height: 56px;
+    padding: 15px;
+    border: 1px solid #D1C7A3;
+    border-radius: 5px;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+.counter-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  gap: 22px;
+  box-sizing: border-box;
+  height: 56px;
+  width: 161px;
+  //padding-top: 6px;
+  border: 1px solid #D1C7A3;
+  border-radius: 5px;
+
+  .counter-btn{
+    //width: 53px;
+    //height: 53px;
+    background-color: transparent;
+    color: #645832;
+    border: none;
+  }
+}
+

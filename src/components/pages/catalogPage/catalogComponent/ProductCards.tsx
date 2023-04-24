@@ -2,7 +2,7 @@ import {FC, useState, useEffect} from "react";
 import { useSelector } from 'react-redux';
 import {ThreeDots } from 'react-loader-spinner'
 
-import { SingleProductCard} from 'components/pages'
+import {SingleProductCard} from "components/reusableComponents/singleProductCatd/SingleProductCard";
 import {IRootIsLoading, IRootState} from "../types";
 import '../styles/productCards.scss'
 
@@ -18,13 +18,7 @@ export const ProductCards: FC = () => {
   return (
     <div className='product-cards-container-grid'>
       {
-        isLoading ?
-        <ThreeDots
-          height="50"
-          width="50"
-          color="#d1c7a3"
-        /> :
-          productsData.map((data:any, index: number) => (
+        productsData.map((data:any, index: number) => (
         <SingleProductCard key={index} {...data} />
       ))}
     </div>
