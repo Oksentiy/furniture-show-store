@@ -35,6 +35,7 @@ export const Sorting = () => {
       <div className="sm-header-wrapper">
         <h4 className='sort-filter-header'>Сортування</h4>
       </div>
+
       <ul className='sort-filter-btns sort'>
         <li className="sort_btn" onClick={() => handleSelectChange('rate')}>Спочатку нові</li>
         <li className="sort_btn" onClick={() => handleSelectChange('price ascending')}>За зростанням ціни</li>

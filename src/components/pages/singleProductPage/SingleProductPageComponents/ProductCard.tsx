@@ -10,7 +10,7 @@ import '../styles/productCard.scss'
 
 export const ProductCard: FC = () => {
   const productData: ProductData = useSelector((data: ProductRootState) => data.singleProduct.item);
-  // const isLoading: boolean = useSelector((data: IRootIsLoading) => data.singleProduct.isLoading)
+
   const dispatch = useDispatch()
   const params = useParams()
   const {id} = params

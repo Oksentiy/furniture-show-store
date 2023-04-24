@@ -18,13 +18,7 @@ export const ProductCards: FC = () => {
   return (
     <div className='product-cards-container-grid'>
       {
-        isLoading ?
-        <ThreeDots
-          height="50"
-          width="50"
-          color="#d1c7a3"
-        /> :
-          productsData.map((data:any, index: number) => (
+        productsData.map((data:any, index: number) => (
         <SingleProductCard key={index} {...data} />
       ))}
     </div>

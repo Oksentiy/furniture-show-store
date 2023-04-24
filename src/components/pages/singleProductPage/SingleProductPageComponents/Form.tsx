@@ -22,6 +22,7 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
   const {id} = params
 
   const [finalPrice, setFinalPrice] = useState<number>()
+  const [currentColor, setCurrentColor] = useState<string>()
   const [dataForPrice, setDataForPrice] = useState({
     count: 1,
     height: 0,
@@ -49,11 +50,10 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
 
   useEffect(() => {
     const price = calculatePrice(
-      priceForThickness !== undefined ?
+      priceForThickness !== undefined && !Number.isNaN(priceForThickness) ?
         priceForThickness :
-        +productData?.prices[0].price, dataForPrice.height, dataForPrice.width, dataForPrice.count)
+        +productData?.prices[1].price, dataForPrice.height, dataForPrice.width, dataForPrice.count)
     setFinalPrice(price)
-
   }, [dataForPrice, priceForThickness])
 
   const handleIncrement = () => {
@@ -94,7 +94,7 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
     <form className="form-container" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       {productData !== undefined &&
         <>
-          <legend className='legend'>Колір плівки</legend>
+          <legend className='legend'>Колір плівки: <strong style={{fontWeight: 600}}>{currentColor}</strong></legend>
           <div className="radio-input">
             {productData.colors.map((color, index) =>
               <div className="label-wrapper" key={index}>
@@ -104,6 +104,7 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     id={color.name}
                     name="value-radio"
                     value={color.hex}
+                    onClick={() => setCurrentColor(color.name)}
                     {...register("color", {required: true,})}/>
                   <span/>
                 </label>
@@ -121,7 +122,6 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                   name="thickness"
                   value={value.thickness}
                   defaultChecked
-                  // checked={value.thickness === '16'}
                   onClick={() => setPrice(+value.price)}
                   {...register("thickness", {required: true})}
                 />{value.thickness} мм
@@ -138,12 +138,12 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     type="text"
                     name="height"
                     onInput={handleSetDataForPriceCalc}
-                    {...register(`height`, {required: true, pattern: /^\d+$/, min: 500})}
+                    {...register(`height`, {required: true, pattern: /^\d+$/, min: 300, max: 3000})}
                   />
                 </label>
                 {errors.height && (
                   <small style={{color: "red", fontSize: "12px"}}>
-                    Мінімальна висота 500
+                    Мінімальна висота 300, максимальна 3000
                   </small>
                 )}
                 {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
@@ -155,12 +155,12 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     type="text"
                     name="width"
                     onInput={handleSetDataForPriceCalc}
-                    {...register(`width`, {required: true, pattern: /^\d+$/, min: 500})}
+                    {...register(`width`, {required: true, pattern: /^\d+$/, min: 200, max: 1500})}
                   />
                 </label>
                 {errors.width && (
                   <small style={{color: "red", fontSize: "12px"}}>
-                    Мінімальна ширина 500
+                    Мінімальна ширина 200, максимальна 1500
                   </small>
                 )}
                 {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}

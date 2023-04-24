@@ -1,3 +1,6 @@
+$bg-nav-image: url('../img/nav_photo.png');
+$bg-nav-img: './img';
+
 
 .navbar {
   position: sticky;
@@ -31,19 +34,23 @@
   }
 
   &__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    //gap: 100px;
     position: fixed;
     top: 76px;
     left: 0;
-    width: 100%;
+    width: 1920px;
     height: 611px;
     background-color: #EBE6D7;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     visibility: hidden;
-    padding: 120px 0 0 80px;
+    padding:0 0 0 80px;
 
     &__title {
       font-family: 'Playfair Display', serif;
-      font-size: 52px;
+      font-size: 34px;
       font-weight: 400;
       margin: 20px 20px 10px;
     }
@@ -75,6 +82,12 @@
     }
   }
 }
+.navbar-wrapper{
+  display: flex;
+  flex-direction: row;
+  padding-top: 120px;
+  gap: 100px;
+}
 .nav-wrapper{
   width: 100%;
   display: flex;
@@ -104,6 +117,26 @@
     &:hover{
       cursor: pointer;
     }
+  }
+}
+.nav-img-container{
+  position: relative;
+}
+.text-above-img{
+  position: absolute;
+  top: 88%;
+  left: 31%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+
+  p{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  h4{
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
   }
 }
 

@@ -1,7 +1,10 @@
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
-import {Navbar} from "components/reusableComponents/navbar/Navbar";
+import {Navbar} from "components/reusableComponents/navbar";
+import {BackToTop} from "components/reusableComponents/backToTop/BackToTop";
+import {Footer} from "components/reusableComponents/footer/Footer";
+
 import { ProductCards} from "components/pages";
 import {Pagination} from "./pagination";
 import {Sidebar} from "./sidebar";
@@ -29,21 +32,25 @@ export const CatalogPage = () => {
   return (
     <>
       <Navbar/>
-      <div className='catalog-layout'>
-        <h1 className="header">ВСІ ТОВАРИ</h1>
-        <p className="product-counter">{paginationData?.total_count} товарів</p>
-        <div className='catalog-grid-container grid-container'>
-          <div className='grid-item-3'>
-            <Sidebar/>
-          </div>
-          <div className='grid-item-4'>
-            <ProductCards/>
-          </div>
-          <div className='grid-item-5'>
-            <Pagination currentPage={currentPage} lastPage={lastPage} maxLength={10} setCurrentPage={setCurrentPage}/>
+      {/*<div className="overlay-zone">*/}
+        <div className='catalog-layout'>
+          <h1 className="header">ВСІ ТОВАРИ</h1>
+          <p className="product-counter">{paginationData?.total_count} товарів</p>
+          <div className='catalog-grid-container grid-container'>
+            <div className='grid-item-3'>
+              <Sidebar/>
+            </div>
+            <div className='grid-item-4'>
+              <ProductCards/>
+            </div>
+            <div className='grid-item-5'>
+              <Pagination currentPage={currentPage} lastPage={lastPage} maxLength={10} setCurrentPage={setCurrentPage}/>
+            </div>
           </div>
         </div>
-      </div>
+        <BackToTop/>
+        <Footer/>
+      {/*</div>*/}
     </>
   )
 }
