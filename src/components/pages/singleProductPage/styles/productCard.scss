@@ -1,0 +1,120 @@
+.card-container-grid{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  height: auto;
+  width: 1920px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #D1C7A3;
+  padding: 0 22px;
+
+  .img-container{
+    max-width: 920px;
+    padding: 40px 44px 44px 0;
+    border-right: 1px solid #D1C7A3;
+  }
+  .product-img{
+    display: flex;
+    max-width: 880px;
+    height: 916px;
+  }
+  .info-container{
+    max-width: 938px;
+    padding: 40px 22px 0 161px;
+
+    .add-info-container{
+      display: flex;
+      justify-content: space-between;
+      //padding-right: 30px;
+    }
+    .additional-info{
+      font-size: 14px;
+      color: #645832;
+    }
+    .description{
+      margin-top: 20px;
+      width: 700px;
+    }
+    .company-name{
+      margin-top: 20px;
+    }
+    .price{
+      font-size: 28px;
+      color: #000;
+      margin-top: 52px;
+    }
+  }
+  h4{
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+  }
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+}
+
+// radio btns choose thickness
+
+.radio-input {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
+
+  input {
+    display: none;
+  }
+
+  label {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .radio-thickness {
+    width: 142px;
+    height: 56px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #D1C7A3;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: lighter;
+
+    &:has(input:checked) {
+      background-color: #645832;
+      color: #EFEAE7;
+    }
+  }
+}
+
+// color radio btns
+.label-wrapper{
+  width: 56px;
+  height: 56px;
+  border: 2px solid #D1C7A3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:has(input:checked) {
+    border: 1px solid #1F1F1F;
+  }
+}
+
+.selection {
+  display: none;
+  height: 100%;
+  width: calc(var(--container_width) / 3);
+  z-index: 0;
+  left: 0;
+  top: 0;
+  transition: .15s ease;
+}
