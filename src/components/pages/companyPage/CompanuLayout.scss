@@ -1,0 +1,35 @@
+.company-layout{
+  display: flex;
+  flex-direction: column;
+  width: 1920px;
+  padding: 0 22px;
+  background-color: #EBE6D7;
+  font-family: 'Open Sans', sans-serif;
+
+  .main-info-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 85px;
+    align-items: center;
+
+    .info-group{
+      width: 480px;
+
+      h5{
+        font-size: 18px;
+        text-transform: uppercase
+      }
+
+      p{
+        color: #1F1F1F;
+        font-weight: 300;
+      }
+    }
+    .socials{
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      gap: 140px;
+    }
+  }
+}

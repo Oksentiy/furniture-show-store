@@ -7,8 +7,8 @@ export interface IRootState {
   },
 }
 
-export interface IRootIsLoading {
-  products: {
-    isLoading: boolean;
-  };
-}
+// export interface IRootIsLoading {
+//   products: {
+//     isLoading: boolean;
+//   };
+// }

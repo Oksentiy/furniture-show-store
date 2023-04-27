@@ -9,10 +9,21 @@ export interface MyComponentProps {
   thickness: string[];
 }
 
+// export type FormData = {
+//   product_color_id: string;
+//   product_thickness_id: string;
+//   product_length: string;
+//   product_width: string;
+//   quantity?: string;
+// };
+export interface SendFormData {
+  card_item: FormData,
+}
 export type FormData = {
-  color: string;
-  thickness: string;
-  height: string;
-  width: string;
-  count?: string;
+  product_id?: number;
+  product_color_id: number;
+  product_thickness_id: number;
+  product_length: number;
+  product_width: number;
+  quantity?: number;
 };

@@ -26,11 +26,11 @@ export interface ProductRootState {
     item: ProductData;
   };
 }
-export interface IRootIsLoading {
-  singleProduct: {
-    isLoading: boolean;
-  };
-}
+// export interface IRootIsLoading {
+//   singleProduct: {
+//     isLoading: boolean;
+//   };
+// }
 export interface ProductState {
   item: ProductData;
   isLoading: boolean;

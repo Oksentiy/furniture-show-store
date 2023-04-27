@@ -32,7 +32,6 @@ export const CatalogPage = () => {
   return (
     <>
       <Navbar/>
-      {/*<div className="overlay-zone">*/}
         <div className='catalog-layout'>
           <h1 className="header">ВСІ ТОВАРИ</h1>
           <p className="product-counter">{paginationData?.total_count} товарів</p>
@@ -50,7 +49,6 @@ export const CatalogPage = () => {
         </div>
         <BackToTop/>
         <Footer/>
-      {/*</div>*/}
     </>
   )
 }

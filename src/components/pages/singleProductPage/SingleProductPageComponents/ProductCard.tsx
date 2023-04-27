@@ -1,8 +1,7 @@
 import { FC, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-// import {setProductData} from 'SingleProductPageComponents/pages/singleProductPage/model/slice/singleProductDataSlice'
-import {ProductData, ProductRootState, IRootIsLoading} from "../types";
+import {ProductData, ProductRootState} from "../types";
 import {fetchProduct} from "components/pages";
 import {Form} from "components/pages";
 
