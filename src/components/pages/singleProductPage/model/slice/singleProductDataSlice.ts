@@ -34,5 +34,5 @@ const singleProductSlice = createSlice({
   },
 });
 
-export const {setProductData} = singleProductSlice.actions;
+// export const {setProductData} = singleProductSlice.actions;
 export default singleProductSlice.reducer;

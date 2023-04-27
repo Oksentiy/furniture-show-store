@@ -1,0 +1,48 @@
+
+.contacts-layout{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background-color: #EBE6D7;
+
+  .map-container{
+    display: flex;
+    width: 960px;
+    padding: 22px;
+    border-right: 1px solid #D1C7A3;
+  }
+  .contact-info-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 940px;
+    padding: 230px 125px 220px 130px;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+
+    .slogan{
+      margin-bottom: 120px;
+    }
+
+    h2{
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      margin-bottom: 80px;
+    }
+
+    .company-details{
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      div{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: start;
+        gap: 100px;
+      }
+    }
+  }
+}
