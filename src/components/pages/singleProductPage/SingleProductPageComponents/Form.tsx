@@ -2,12 +2,12 @@ import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {useForm, SubmitHandler} from 'react-hook-form';
 import {useSelector, useDispatch} from "react-redux";
 
-import {Price} from "../types";
 import {FormData, ProductData, ProductRootState, fetchProduct} from "components/pages";
 import {calculatePrice} from "components/pages/singleProductPage/SingleProductPageComponents/methods/calcPrice";
 
 import '../styles/form.scss'
 import {useParams} from "react-router-dom";
+import {sendCartData} from "components/pages/singleProductPage/SingleProductPageComponents/methods/postFormData";
 
 type Props = {
   setPrice: (data: number) => void,
@@ -24,18 +24,18 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
   const [finalPrice, setFinalPrice] = useState<number>()
   const [currentColor, setCurrentColor] = useState<string>()
   const [dataForPrice, setDataForPrice] = useState({
-    count: 1,
-    height: 0,
-    width: 0,
+    quantity: 1,
+    product_length: 0,
+    product_width: 0,
   })
 
   const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm<FormData>({
     defaultValues: {
-      color: '',
-      thickness: '',
-      width: '',
-      height: '',
-      count: '',
+      product_color_id: 0,
+      product_thickness_id: 0,
+      product_width: 0,
+      product_length: 0,
+      quantity: 0,
     },
   });
 
@@ -45,28 +45,28 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
   }, [])
 
   useEffect(() => {
-    setValue("count", String(dataForPrice.count))
-  }, [dataForPrice.count])
+    setValue("quantity", dataForPrice.quantity)
+  }, [dataForPrice.quantity])
 
   useEffect(() => {
     const price = calculatePrice(
       priceForThickness !== undefined && !Number.isNaN(priceForThickness) ?
         priceForThickness :
-        +productData?.prices[1].price, dataForPrice.height, dataForPrice.width, dataForPrice.count)
+        +productData?.prices[1].price, dataForPrice.product_length, dataForPrice.product_width, dataForPrice.quantity)
     setFinalPrice(price)
   }, [dataForPrice, priceForThickness])
 
   const handleIncrement = () => {
     setDataForPrice((prevState) => ({
       ...prevState,
-      count: prevState.count + 1
+      quantity: prevState.quantity + 1
     }));
   };
 
   const handleDecrement = () => {
     setDataForPrice((prevState) => ({
       ...prevState,
-      count: prevState.count > 1 ? prevState.count - 1 : prevState.count
+      quantity: prevState.quantity > 1 ? prevState.quantity - 1 : prevState.quantity
     }));
   };
 
@@ -78,16 +78,28 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
     }));
   };
 
-
   const onSubmit: SubmitHandler<FormData> = (data) => {
     reset();
     setDataForPrice((prevProducts) => ({
       ...prevProducts,
-      count: 1,
-      height: 0,
-      width: 0
+      quantity: 1,
+      product_length: 0,
+      product_width: 0
     }));
-    console.log(data)
+
+    const convertedData = {
+      card_item:  {
+        ...data,
+        product_id: Math.floor(Math.random() * 100000) + 1,
+        product_length: Number(data.product_length),
+        product_width: Number(data.product_width),
+        product_color_id: Number(data.product_color_id),
+        product_thickness_id: Number(data.product_thickness_id),
+      }
+    }
+    sendCartData(convertedData)
+
+    console.log(convertedData)
   };
 
   return (
@@ -103,16 +115,16 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     type="radio"
                     id={color.name}
                     name="value-radio"
-                    value={color.hex}
+                    value={Number(index)}
                     onClick={() => setCurrentColor(color.name)}
-                    {...register("color", {required: true,})}/>
+                    {...register("product_color_id", {required: true,})}/>
                   <span/>
                 </label>
               </div>
             )}
             <span className="selection"/>
           </div>
-          {errors.color && <small style={{color: "red", fontSize: "12px"}}>Оберіть колір плівки</small>}
+          {errors.product_color_id && <small style={{color: "red", fontSize: "12px"}}>Оберіть колір плівки</small>}
           <legend className='legend'>Товщина фасаду:</legend>
           <div className="radio-input">
             {productData.prices.map((value, index) =>
@@ -120,15 +132,15 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                 <input
                   type="radio"
                   name="thickness"
-                  value={value.thickness}
+                  value={Number(index)}
                   defaultChecked
                   onClick={() => setPrice(+value.price)}
-                  {...register("thickness", {required: true})}
+                  {...register("product_thickness_id", {required: true})}
                 />{value.thickness} мм
               </label>
             )}
           </div>
-          {errors.thickness && <small style={{color: "red", fontSize: "12px"}}>Оберіть товщину фасаду</small>}
+          {errors.product_thickness_id && <small style={{color: "red", fontSize: "12px"}}>Оберіть товщину фасаду</small>}
           <div className="input-wrapper">
             <div className="input-group">
               <div className='input-info'>
@@ -138,15 +150,15 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     type="text"
                     name="height"
                     onInput={handleSetDataForPriceCalc}
-                    {...register(`height`, {required: true, pattern: /^\d+$/, min: 300, max: 3000})}
+                    {...register(`product_length`, {required: true, pattern: /^\d+$/, min: 300, max: 3000})}
                   />
                 </label>
-                {errors.height && (
+                {errors.product_length && (
                   <small style={{color: "red", fontSize: "12px"}}>
                     Мінімальна висота 300, максимальна 3000
                   </small>
                 )}
-                {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                {errors.product_width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
               </div>
               <div className='input-info'>
                 <legend className='legend-size'>Ширина фасаду (мм)</legend>
@@ -155,31 +167,31 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
                     type="text"
                     name="width"
                     onInput={handleSetDataForPriceCalc}
-                    {...register(`width`, {required: true, pattern: /^\d+$/, min: 200, max: 1500})}
+                    {...register(`product_width`, {required: true, pattern: /^\d+$/, min: 200, max: 1500})}
                   />
                 </label>
-                {errors.width && (
+                {errors.product_width && (
                   <small style={{color: "red", fontSize: "12px"}}>
                     Мінімальна ширина 200, максимальна 1500
                   </small>
                 )}
-                {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                {errors.product_length && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
               </div>
               <div className="counter-wrapper " style={{display: 'flex', flexDirection: 'column'}}>
                 <legend style={{fontSize: '18px', visibility: 'hidden'}}>hidden text</legend>
                 <div className='counter-container'>
                   <button type='button' className="counter-btn" onClick={handleDecrement}>-</button>
-                  <p ref={countRef}>{dataForPrice.count}</p>
+                  <p ref={countRef}>{dataForPrice.quantity}</p>
                   <input
                     type="hidden"
                     name="count"
-                    {...register("count")}
+                    {...register("quantity")}
                   />
                   <button type='button' className="counter-btn" onClick={handleIncrement}>+</button>
                 </div>
-                  {errors.height && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-                  {errors.width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
-                  {errors.count && <small style={{color: "red", fontSize: "12px"}}>Мінімум 1</small>}
+                  {errors.product_length && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                  {errors.product_width && <small style={{visibility: 'hidden'}}>Обов'язкове поле</small>}
+                  {errors.quantity && <small style={{color: "red", fontSize: "12px"}}>Мінімум 1</small>}
               </div>
             </div>
           </div>

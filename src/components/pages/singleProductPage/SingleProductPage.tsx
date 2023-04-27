@@ -7,6 +7,7 @@ import {Footer} from "components/reusableComponents/footer";
 import './styles/productPageLayout.scss'
 
 export const SingleProductPage = () => {
+
   return(
     <div className='product-page-layout'>
       <Navbar/>
