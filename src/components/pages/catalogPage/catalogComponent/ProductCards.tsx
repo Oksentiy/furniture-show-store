@@ -12,7 +12,7 @@ export const ProductCards: FC = () => {
   useEffect(() => {
     setProducts(data.products)
   },[data.products])
-
+  console.log(productsData)
   return (
     <div className='product-cards-container-grid'>
       {
