@@ -17,7 +17,7 @@ export const ProductCards: FC = () => {
   return (
     <div className='product-cards-container-grid'>
       {
-        productsData.map((data:any, index: number) => (
+        productsData?.map((data:any, index: number) => (
         <SingleProductCard key={index} {...data} />
       ))}
     </div>
