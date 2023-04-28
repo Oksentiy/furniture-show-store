@@ -2,15 +2,24 @@
   display: flex;
   flex-direction: column;
   width: 1920px;
-  padding: 0 22px;
   background-color: #EBE6D7;
   font-family: 'Open Sans', sans-serif;
+
+  h2{
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    padding-left: 22px;
+  }
 
   .main-info-section{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     height: 85px;
+    padding-left: 22px;
     align-items: center;
+    border-top: 1px solid #D1C7A3;
+    border-bottom: 1px solid #D1C7A3;
 
     .info-group{
       width: 480px;
@@ -27,9 +36,30 @@
     }
     .socials{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      //justify-content: start;
+      //gap: 140px;
+
+    }
+    .last-contact-info{
+      display: flex;
       justify-content: start;
-      gap: 140px;
+      gap: 160px;
+
+      div{
+        display: flex;
+        gap: 12px;
+      }
+
+      a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 54px;
+        height: 54px;
+        border: 1px solid #D1C7A3;
+        border-radius: 50%;
+      }
     }
   }
 }

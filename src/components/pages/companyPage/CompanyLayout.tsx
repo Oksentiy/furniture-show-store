@@ -26,18 +26,18 @@ export const CompanyLayout = () => {
             <h5>АДРЕСА</h5>
             <p>вул. Бережанська, 11</p>
           </div>
-          <div className='info-group'>
-            <h5>ТЕЛЕФОН</h5>
+          <div className='info-group last-contact-info'>
             <div className='socials'>
+              <h5>ТЕЛЕФОН</h5>
               <p>+ 380 (63) 545 66 33</p>
-              <div>
-                <a href="#">
-                  <img src={youtube} alt=""/>
-                </a>
-                <a href="">
-                  <img src={instagram} alt=""/>
-                </a>
-              </div>
+            </div>
+            <div>
+              <a href="#">
+                <img src={youtube} alt=""/>
+              </a>
+              <a href="">
+                <img src={instagram} alt=""/>
+              </a>
             </div>
           </div>
         </div>
