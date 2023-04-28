@@ -36,7 +36,7 @@ export const ProductCard: FC = () => {
       {productData &&
         <div className='card-container-grid'>
           <div className="img-container">
-            <img src={productData.photo} alt="some pic" className='product-img'/>
+            <img src={productData.photo} alt="image of chosen furniture" className='product-img'/>
           </div>
           <div className="info-container">
             <h4>{productData.name}</h4>

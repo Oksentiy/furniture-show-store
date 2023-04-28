@@ -4,7 +4,7 @@ import {Footer} from "components/reusableComponents/footer";
 import youtube from 'components/reusableComponents/img/youTube.png'
 import instagram from 'components/reusableComponents/img/instagram.png'
 
-import './CompanuLayout.scss'
+import './CompanyLayout.scss'
 import {NavLink} from "react-router-dom";
 
 export const CompanyLayout = () => {

@@ -1,7 +1,5 @@
-$bg-nav-image: url('../img/nav_photo.png');
-$bg-nav-img: './img';
-
-
+//$bg-nav-image: url('../img/nav_photo.png');
+//$bg-nav-img: './img';
 .navbar {
   position: sticky;
   top: 0;
@@ -103,6 +101,11 @@ $bg-nav-img: './img';
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   font-weight: 800;
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
 }
 .auth-and-basket-wrapper{
   display: flex;

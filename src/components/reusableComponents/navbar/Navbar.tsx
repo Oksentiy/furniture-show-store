@@ -86,7 +86,7 @@ export const Navbar = () => {
           <Link to ='/products?page=1'>Каталог</Link>
         </div>
         <div className="logo">
-          <h3>SHIFON'YER</h3>
+          <h3> SHIFON'YER </h3>
         </div>
         <div className='auth-and-basket-wrapper'>
           <div className="authorize-btn">
