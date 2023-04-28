@@ -7,7 +7,6 @@ export const fetchProduct = createAsyncThunk(
     if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
-    // console.log("повинна отримати лише один продукт",`http://164.90.237.173/api/v1/products/${id}`)
     return await response.json();
   }
 );

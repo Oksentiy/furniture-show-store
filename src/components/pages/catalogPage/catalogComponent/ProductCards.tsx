@@ -7,7 +7,6 @@ import '../styles/productCards.scss'
 
 export const ProductCards: FC = () => {
   const [productsData, setProducts] = useState([])
-  // const isLoading: boolean = useSelector((data:IRootIsLoading) => data.products.isLoading)
   const data:any = useSelector((data: IRootState) => data.products.items);
 
   useEffect(() => {
