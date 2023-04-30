@@ -15,7 +15,9 @@ export const SingleProductPage = () => {
       <div className="title-recommended">
         <h2>Рекомендовані товари</h2>
       </div>
-      <RecommendedProducts/>
+      <div className="recommended-products">
+        <RecommendedProducts/>
+      </div>
       <BackToTop/>
       <Footer/>
     </div>

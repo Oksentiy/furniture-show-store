@@ -46,16 +46,16 @@ export const Navbar = () => {
               <h3>Партнери</h3>
             </li>
             <li className="nav-links">
-              <NavLink to='/ikea'>IKEA</NavLink>
+              <NavLink to='/ikea/2'>IKEA</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/jysk'>JYSK</NavLink>
+              <NavLink to='/jysk/3'>JYSK</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/blum'>BLUM</NavLink>
+              <NavLink to='/blum/4'>BLUM</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/kolss'>KOLSS </NavLink>
+              <NavLink to='/kolss/5'>KOLSS </NavLink>
             </li>
           </ul>
           <ul className="navbar__menu__links">
@@ -86,7 +86,7 @@ export const Navbar = () => {
           <Link to ='/products?page=1'>Каталог</Link>
         </div>
         <div className="logo">
-          <h3>SHIFON'YER</h3>
+          <h3> SHIFON'YER </h3>
         </div>
         <div className='auth-and-basket-wrapper'>
           <div className="authorize-btn">

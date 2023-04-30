@@ -7,7 +7,6 @@
   width: auto;
   height: auto;
 
-  //gap: 40px;
   .title-recommended {
     display: flex;
     justify-content: center;
@@ -19,5 +18,8 @@
   h2{
     font-size: 52px;
     font-family: 'Playfair Display', serif;
+  }
+  .recommended-products{
+    margin-bottom: 60px;
   }
 }
