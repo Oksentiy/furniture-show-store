@@ -62,4 +62,73 @@
       }
     }
   }
+
+  .history-section{
+    width: 1920px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 1px solid #D1C7A3;
+  }
+  .img-wrapper{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #D1C7A3;
+    padding: 22px;
+
+  }
+  .history-wrapper{
+    width: 50%;
+    padding: 48px 130px;
+
+    h3{
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+
+    .history-text{
+      display: flex;
+      flex-direction: column;
+      gap:20px;
+    }
+  }
+
+  .company-products-section{
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: center;
+    //align-items: center;
+
+    .title-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #D1C7A3;
+      padding: 42px;
+
+      h3{
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        text-transform: uppercase;
+
+      }
+    }
+    .open-catalog{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #D1C7A3;
+      height: 71px;
+
+      a{
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #1F1F1F;
+      }
+    }
+  }
+
 }
