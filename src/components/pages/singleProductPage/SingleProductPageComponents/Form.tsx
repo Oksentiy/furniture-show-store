@@ -7,7 +7,7 @@ import {calculatePrice} from "components/pages/singleProductPage/SingleProductPa
 
 import '../styles/form.scss'
 import {useParams} from "react-router-dom";
-import {sendCartData} from "components/pages/singleProductPage/SingleProductPageComponents/methods/postFormData";
+import {sendOrderData} from "components/pages/singleProductPage/SingleProductPageComponents/methods/postFormData";
 
 type Props = {
   setPrice: (data: number) => void,
@@ -97,7 +97,8 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
         product_thickness_id: Number(data.product_thickness_id),
       }
     }
-    sendCartData(convertedData)
+    sendOrderData(convertedData)
+    // sendOrderData()
 
     console.log(convertedData)
   };

@@ -1,31 +1,7 @@
 import { SendFormData} from "components/pages";
 
-// export async function sendCartData( cartItem: SendFormData): Promise<any> {
-//   const response = await fetch('http://164.90.237.173/api/v1/cart_items', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${TOKEN}`
-//     },
-//     body: JSON.stringify({
-//       cart_item: {
-//         product_id: cartItem.card_item.product_id,
-//         quantity: cartItem.card_item.quantity,
-//         product_width: cartItem.card_item.product_width,
-//         product_length: cartItem.card_item.product_length,
-//         product_thickness_id: cartItem.card_item.product_thickness_id,
-//         product_color_id: cartItem.card_item.product_color_id
-//       }
-//     })
-//   });
-//
-//   const data = await response.json();
-//   console.log(data)
-//   return data;
-// }
-
-// export function sendCartData(formData: SendFormData): void {
-//   const apiUrl = 'http://164.90.237.173/api/v1/cart_items';
+// export function sendOrderData(formData: SendFormData): void {
+//   const apiUrl = 'https://shyfonyer.shop/api/v1/cart_items';
 //   const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNjgzMDMyNDA2fQ.6dJperyKvOjQzwzUNP2J3Zl3f40iOG2A6KBSsJ52GPE'
 //
 //   fetch(apiUrl, {
@@ -44,11 +20,12 @@ import { SendFormData} from "components/pages";
 //     .catch(error => console.error(error));
 // }
 
-export function sendCartData(formData: SendFormData): void {
-  const apiUrl = `http://164.90.237.173/api/v1/cart_items?product_id=${formData.card_item.product_id}&quantity=${formData.card_item.quantity}&product_width=${formData.card_item.product_width}&product_length=${formData.card_item.product_length}&product_thickness_id=${formData.card_item.product_thickness_id}&product_color_id=${formData.card_item.product_color_id}`;
-  const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNjgzMDMyNDA2fQ.6dJperyKvOjQzwzUNP2J3Zl3f40iOG2A6KBSsJ52GPE'
+export function sendOrderData(formData: SendFormData): void {
+  const URL = `https://shyfonyer.shop/api/v1/cart_items?[cart_item]product_id=${formData.card_item.product_id}&[cart_item]quantity=${formData.card_item.quantity}&[cart_item]product_width=${formData.card_item.product_width}&[cart_item]product_length=${formData.card_item.product_length}&[cart_item]product_thickness_id=${formData.card_item.product_thickness_id}&[cart_item]product_color_id=${formData.card_item.product_color_id}`
+  // const apiUrl = `https://shyfonyer.shop/api/v1/cart_items?product_id=${formData.card_item.product_id}&quantity=${formData.card_item.quantity}&product_width=${formData.card_item.product_width}&product_length=${formData.card_item.product_length}&product_thickness_id=${formData.card_item.product_thickness_id}&product_color_id=${formData.card_item.product_color_id}`;
+  const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOSwiZXhwIjoxNjgzNjI2NzgxfQ.GldrapI-H8BYJfTMuJiuqSjjx4Nf0iY9AqkvzOOZ41c'
 
-  fetch(apiUrl, {
+  fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,3 +46,33 @@ export function sendCartData(formData: SendFormData): void {
     })
     .catch(error => console.error(error));
 }
+
+
+// import axios from 'axios';
+//
+// export const sendOrderData = async () => {
+//   const url = 'https://shyfonyer.shop/api/v1/cart_items';
+//   const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOSwiZXhwIjoxNjgzNjI2NzgxfQ.GldrapI-H8BYJfTMuJiuqSjjx4Nf0iY9AqkvzOOZ41c'
+//
+//   const params = {
+//     cart_item: {
+//       product_id: 26382,
+//       quantity: 1,
+//       product_width: 100,
+//       product_length: 1000,
+//       product_thickness_id: 0,
+//       product_color_id: 0,
+//     },
+//   };
+//
+//   const headers = {
+//     Authorization: `Bearer ${TOKEN}`,
+//   };
+//
+//   try {
+//     const response = await axios.post(url, params, { headers });
+//     console.log(response.data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
