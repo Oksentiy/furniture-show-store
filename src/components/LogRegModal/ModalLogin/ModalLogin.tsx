@@ -10,6 +10,7 @@ import { loginValue } from '../../../formValues/formValues';
 import { RootState } from '../../../storeToolkit';
 import { modalIsAction, userIsLoggin } from '../../../storeToolkit/isLogModalSlice';
 import { userEmail, userToken } from '../../../storeToolkit/userSlice';
+import { getLoginResource } from 'utils/helpfulFunction';
 
 interface ModalLoginProps {
     setPopup: (value:string) => void;
@@ -27,46 +28,46 @@ export const ModalLogin: React.FC<ModalLoginProps> = ({ setPopup }) => {
     const [disabled, setDisabled] = useState(true);
     const [loginForm, setLoginForm] = useState<LoginValuetypes>(loginValue);
     const [rememberMe,setRememberMe] = useState(false)
-
+    const [someErrorEmailPassword,setSomeErrorEmailPassword] = useState<boolean>(false);
+    
     useEffect(()=>{
         if(localStorage.getItem('saveMe')) setLoginForm({...loginForm,'email':localStorage.getItem('saveMe')!})
     },[]);
+
+    const getResource = async (url:string) => {
+        const res = await getLoginResource(url,loginForm.email,loginForm.password);
+        console.log('new new new ',res);
+        if (res) {
+            if(res.token)dispatch(userIsLoggin(true));
+            dispatch(userToken(res.token));
+            localStorage.setItem('token', res.token);
+            /////////////////////////////////////////////
+            fetch(`https://shyfonyer.shop/api/v1/user/me`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${res.token}`,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    dispatch(userEmail(data.email));
+                    localStorage.setItem('loginUser', data.email);
+                    dispatch(modalIsAction(false));
+                });   
+        } else {
+            setSomeErrorEmailPassword(true);
+            console.log('something going wrong');
+        }
+
+    }
 
     const handleSubmit = (e:any) => {
         e.preventDefault();
         console.log('login is submit');
         if(rememberMe) localStorage.setItem('saveMe', loginForm.email);
-        console.log(loginForm);
-        fetch('https://shyfonyer.shop/api/v1/auth/login_user', {
-            method: 'POST',
-            body: JSON.stringify({
-                email: loginForm.email,
-                password: loginForm.password,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if(data.token)dispatch(userIsLoggin(true));
-                dispatch(userToken(data.token));
-                localStorage.setItem('token', data.token);
-                /////////////////////////////////////////////
-                fetch(`https://shyfonyer.shop/api/v1/user/me`, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${data.token}`,
-                    },
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        dispatch(userEmail(data.email));
-                        localStorage.setItem('loginUser', data.email);
-                        dispatch(modalIsAction(false));
-                    });                
-            });            
+        
+        getResource('https://shyfonyer.shop/api/v1/auth/login_user');          
     }
 
     const rememberMeHandler = () =>{
