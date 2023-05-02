@@ -89,7 +89,10 @@ export const Navbar = () => {
           <Link to ='/products?page=1'>Каталог</Link>
         </div>
         <div className="logo">
-          <h3> SHIFON'YER </h3>
+          <NavLink to='/'>
+            <h3> SHIFON'YER </h3>
+          </NavLink>
+
         </div>
         <div className='auth-and-basket-wrapper'>
           
