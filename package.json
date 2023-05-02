@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --env mode=development",
+    "prod": "webpack serve --env mode=production",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
     "test:unit": "jest --config=./config/jest/jest.config.ts",

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {fetchProduct} from "components/pages/singleProductPage/model/services/getSingleProduct";
+import { fetchProduct } from "components/pages/singleProductPage/model/services/getSingleProduct";
 import { ProductState} from "components/pages/singleProductPage/types/singleProductSchema";
 
 const initialState: ProductState = {

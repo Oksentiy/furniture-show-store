@@ -4,6 +4,7 @@ import {IRootState} from "components/pages/catalogPage/types";
 import {useEffect, useState} from "react";
 
 import '../styles/recommendedProducts.scss'
+
 export const RecommendedProducts = () => {
 
   const [productsData, setProducts] = useState([])

@@ -3,8 +3,11 @@ import {Link, NavLink} from "react-router-dom";
 import './navar.scss'
 import icon from '../img/shopping-basket-icon.png'
 import navPhoto from '../img/nav_photo.png'
+import { AllPopup } from "components/LogRegModal/AllPopup";
+import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
 
 export const Navbar = () => {
+  const [showBasket,setShowBasket] = useState(false);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -39,23 +42,23 @@ export const Navbar = () => {
             </li>
             <li><NavLink to="/">головна</NavLink></li>
             <li><NavLink to="/contacts">контакти</NavLink></li>
-            <li><NavLink to='/my_profile'>Особистий кабінет</NavLink></li>
+            <li><NavLink to='/personal-accaunt'>Особистий кабінет</NavLink></li>
           </ul>
           <ul className="navbar__menu__links">
             <li className="navbar__menu__title">
               <h3>Партнери</h3>
             </li>
             <li className="nav-links">
-              <NavLink to='/ikea'>IKEA</NavLink>
+              <NavLink to='/ikea/2'>IKEA</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/jysk'>JYSK</NavLink>
+              <NavLink to='/jysk/3'>JYSK</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/blum'>BLUM</NavLink>
+              <NavLink to='/blum/4'>BLUM</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/kolss'>KOLSS </NavLink>
+              <NavLink to='/kolss/5'>KOLSS </NavLink>
             </li>
           </ul>
           <ul className="navbar__menu__links">
@@ -86,17 +89,18 @@ export const Navbar = () => {
           <Link to ='/products?page=1'>Каталог</Link>
         </div>
         <div className="logo">
-          <h3>SHIFON'YER</h3>
+          <h3> SHIFON'YER </h3>
         </div>
         <div className='auth-and-basket-wrapper'>
-          <div className="authorize-btn">
-            <button>Авторизиція</button>
-          </div>
+          
+            <AllPopup />
+          
           <div className="shopping-basket">
-            <Link to="*">
-              <img src={icon} alt="shopping basket "/>
-            </Link>
+            
+              <img  onClick={()=>setShowBasket(true)} src={icon} alt="shopping basket "/>
+            
           </div>
+          <BasketContainer active={showBasket} setActive={setShowBasket} />
         </div>
       </div>
     </nav>

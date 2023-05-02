@@ -19,7 +19,7 @@ const PRICES = [
 ]
 
 export const Filters = () => {
-  const dispatch:Dispatch = useDispatch()
+  const dispatch: Dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
@@ -81,7 +81,7 @@ export const Filters = () => {
       <div className="sm-header-wrapper filter">
         <h4 className='sort-filter-header '>Фільтри</h4>
       </div>
-        <h4 className='company-filter-title'>Виробник</h4>
+      <h4 className='company-filter-title'>Виробник</h4>
       <div className='sort-filter-btns'>
         {COMPANIES.map((company, index) => (
           <label className="container" key={index}>
