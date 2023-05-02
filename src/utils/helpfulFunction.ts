@@ -12,7 +12,7 @@ export const divideArr = (arr: string[]): [string, string] => {
 export const recomendationFour = () => {
     return Math.floor(Math.random()*9+4) 
 }
-
+//////some changes
 export const getLoginResource =async(url:string,emailForm:string,passwordForm:string)=>{
     try{
           const res = await fetch(url, {
