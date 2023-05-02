@@ -130,7 +130,7 @@ export const EditPersonalData: React.FC<EditPersonalDataProps> = ({id,setChangeM
                 <p className="red__mistake">
                     {emailRegistrationError === 'nomistake' ? '' : emailRegistrationError}
                 </p>
-                <NavLink to={'/show-page/personal-accaunt/ok-page'}>
+                <NavLink to={'/personal-accaunt/my-orders'}>
                     <button disabled={disabled} onClick={handleSaveChanges}>ЗБЕРЕГТИ ЗМІНИ</button>
                 </NavLink>
             </div>
