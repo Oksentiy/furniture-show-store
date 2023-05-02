@@ -21,7 +21,7 @@ export const Footer = () => {
               <NavLink to='/contacts'>Контакти</NavLink>
             </li>
             <li className="nav-links">
-              <NavLink to='/my_profile'>Особистий кабінет</NavLink>
+              <NavLink to='/personal-accaunt'>Особистий кабінет</NavLink>
             </li>
           </ul>
           <ul className="nav-container">
@@ -70,7 +70,7 @@ export const Footer = () => {
           <img src={logo} alt="logo"/>
         </div>
         <div className="privacy-info">
-          <p>shifonyer | 2023</p>
+          <p>&copy; shifonyer | 2023</p>
           <p>design & dev: geekhub interns</p>
         </div>
       </div>

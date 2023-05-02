@@ -9,7 +9,7 @@ import {fetchProducts} from "../model/services/getProductDataFromApi";
 
 import '../styles/sidebar.scss'
 
-const COMPANIES = ['ikea', 'jysk', 'kolls', 'blum']
+const COMPANIES = ['ikea', 'jysk', 'kolss', 'blum']
 const PRICES = [
   {priceInclude: '0', value: '0, 1000', outputPrice: 'до 1000'},
   {priceInclude: '1000', value: '1000, 2000', outputPrice: 'від 1001 до 2000'},
@@ -25,6 +25,7 @@ export const Filters = () => {
   const [selectedCompany, setSelectedCompany] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState<string[]>([]);
   const [maxPrice, setMaxPrice] = useState<string[]>([]);
+
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>, group: string) => {
     const value = event.target.value;
@@ -60,6 +61,7 @@ export const Filters = () => {
     }
 
     const params = createQueryParam(selectedCompanies, lessResult, moreResult);
+    // localStorage.setItem('filterParams', JSON.stringify(params));
     dispatch(setQueryParams(params));
     // @ts-ignore
     dispatch(fetchProducts(params));

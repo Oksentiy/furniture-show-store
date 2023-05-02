@@ -101,10 +101,17 @@
   font-family: 'Open Sans', sans-serif;
   font-size: 36px;
   font-weight: 800;
+  color: black;
+
 
   a{
     text-decoration: none;
     color: black;
+
+    &:visited{
+      text-decoration: none;
+      color: black;
+    }
   }
 }
 .auth-and-basket-wrapper{

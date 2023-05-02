@@ -21,6 +21,8 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
   const params = useParams()
   const {id} = params
 
+  const USER_TOKEN = localStorage.getItem('token');
+
   const [finalPrice, setFinalPrice] = useState<number>()
   const [currentColor, setCurrentColor] = useState<string>()
   const [dataForPrice, setDataForPrice] = useState({
@@ -28,6 +30,8 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
     product_length: 0,
     product_width: 0,
   })
+
+
 
   const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm<FormData>({
     defaultValues: {
@@ -90,14 +94,14 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
     const convertedData = {
       card_item:  {
         ...data,
-        product_id: Math.floor(Math.random() * 100000) + 1,
+        product_id: Number(id),
         product_length: Number(data.product_length),
         product_width: Number(data.product_width),
         product_color_id: Number(data.product_color_id),
         product_thickness_id: Number(data.product_thickness_id),
       }
     }
-    sendOrderData(convertedData)
+    sendOrderData(convertedData, USER_TOKEN)
     // sendOrderData()
 
     console.log(convertedData)
