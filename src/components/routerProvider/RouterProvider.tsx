@@ -7,6 +7,7 @@ import {Navbar} from "components/reusableComponents/navbar";
 import {ContactsLayout} from "components/pages/contactsPage/ContactsLayout";
 import {OurPartnersLayout} from "components/pages/partnersPage/OurPartnersLayout";
 import {CompanyLayout} from "components/pages/companyPage/CompanyLayout";
+import { AccauntMain } from 'components/PersonalAccaunt/AccauntMain';
 
 export const RouterProvider = () => {
   const element = useRoutes([
@@ -23,7 +24,8 @@ export const RouterProvider = () => {
     {path: '/questions', element: <h1> F.A.Q. </h1>},
     {path: '/privacy_policy', element: <h1> Політика конфіденційності </h1>},
     {path: '/our_partners', element: <OurPartnersLayout/>},
-    {path: '*', element: <Navigate to="/notfound" replace/>}
+    {path: '/personal-accaunt/*', element: <AccauntMain/>},
+    {path: '*', element: <Navigate to="/notfound" replace/>},
   ])
 
   return (
