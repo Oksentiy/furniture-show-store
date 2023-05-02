@@ -3,8 +3,11 @@ import {Link, NavLink} from "react-router-dom";
 import './navar.scss'
 import icon from '../img/shopping-basket-icon.png'
 import navPhoto from '../img/nav_photo.png'
+import { AllPopup } from "components/LogRegModal/AllPopup";
+import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
 
 export const Navbar = () => {
+  const [showBasket,setShowBasket] = useState(false);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -39,7 +42,7 @@ export const Navbar = () => {
             </li>
             <li><NavLink to="/">головна</NavLink></li>
             <li><NavLink to="/contacts">контакти</NavLink></li>
-            <li><NavLink to='/my_profile'>Особистий кабінет</NavLink></li>
+            <li><NavLink to='/personal-accaunt'>Особистий кабінет</NavLink></li>
           </ul>
           <ul className="navbar__menu__links">
             <li className="navbar__menu__title">
@@ -89,14 +92,15 @@ export const Navbar = () => {
           <h3> SHIFON'YER </h3>
         </div>
         <div className='auth-and-basket-wrapper'>
-          <div className="authorize-btn">
-            <button>Авторизиція</button>
-          </div>
+          
+            <AllPopup />
+          
           <div className="shopping-basket">
-            <Link to="*">
-              <img src={icon} alt="shopping basket "/>
-            </Link>
+            
+              <img  onClick={()=>setShowBasket(true)} src={icon} alt="shopping basket "/>
+            
           </div>
+          <BasketContainer active={showBasket} setActive={setShowBasket} />
         </div>
       </div>
     </nav>
