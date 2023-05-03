@@ -19,7 +19,7 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
     const [disabled, setDisabled] = useState(true);
     const [registrationForm, setRegistrationForm] = useState(registrationValue);
     const [registrationError,setRegistrationError] = useState('');
-
+    const [equalPasswords,setEqualPasswords] = useState<string>('');
     const activeModal = useSelector((state: RootState) =>state.logReg.modalAction);
 
     const getResource = async (url:string,name:string,email:string,password:string) => {
@@ -40,21 +40,7 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
         e.preventDefault();
         console.log('registration is submit');
             console.log(registrationForm);
-            getResource('https://shyfonyer.shop/api/v1/users',registrationForm.first_name,registrationForm.email,registrationForm.password,);
-            // fetch('https://shyfonyer.shop/api/v1/users', {
-            //     method: 'POST',
-            //     body: JSON.stringify({
-            //         full_name: registrationForm.first_name,
-            //         email: registrationForm.email,
-            //         password: registrationForm.password,
-            //     }),
-            //     headers: {
-            //         'Content-type': 'application/json; charset=UTF-8',
-            //     },
-            // })
-            //     .then((response) => response.json())
-            //     .then((json) => console.log(json));
-            //     setPopup('login');        
+            getResource('https://shyfonyer.shop/api/v1/users',registrationForm.first_name,registrationForm.email,registrationForm.password,);       
     }
 
     const setRegistrationValue = (key: string, value: string) => {
@@ -67,7 +53,13 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
     const confirmPasswordError = useMemo(() => validPassword(registrationForm.confirmPassword), [registrationForm.confirmPassword]);
 
     useEffect(() => {
-            if (registrationForm.password === registrationForm.confirmPassword && first_nameRegistrationError === 'nomistake' && emailRegistrationError === 'nomistake' && passwordRegistrationError === 'nomistake') {
+        if (registrationForm.password !== registrationForm.confirmPassword){
+            setEqualPasswords('паролі не співпадають')
+        }else{
+            setEqualPasswords('');
+        }
+
+        if (registrationForm.password === registrationForm.confirmPassword && first_nameRegistrationError === 'nomistake' && emailRegistrationError === 'nomistake' && passwordRegistrationError === 'nomistake') {
                 setDisabled(false);
             } else setDisabled(true);
     }, [ registrationForm]);
@@ -126,7 +118,7 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
                             setChange={(value:any) => setRegistrationValue('confirmPassword', value)}
                         />
                         <p className="red__mistake">
-                            {confirmPasswordError === 'nomistake' ? '' : confirmPasswordError}
+                            {equalPasswords}
                         </p>
                         <p className="red__mistake">{registrationError}</p>
                     </div>

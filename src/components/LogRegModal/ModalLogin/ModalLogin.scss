@@ -37,11 +37,11 @@
     justify-content: space-between;
 }
 .login__footer__checkbox{
+    vertical-align: middle;
     input{
         display:inline-block;
         width:18px;
         height:18px;
-        vertical-align: middle;
         margin-right: 5px;
         cursor:pointer;
     }
