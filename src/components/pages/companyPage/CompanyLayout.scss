@@ -1,7 +1,7 @@
 .company-layout{
   display: flex;
   flex-direction: column;
-  width: 1920px;
+  //width: 1920px;
   background-color: #EBE6D7;
   font-family: 'Open Sans', sans-serif;
 
@@ -13,16 +13,21 @@
   }
 
   .main-info-section{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    height: 85px;
-    padding-left: 22px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px 22px;
+    //padding-left: 22px;
+    //padding-right: 22px;
+
     align-items: center;
     border-top: 1px solid #D1C7A3;
     border-bottom: 1px solid #D1C7A3;
 
     .info-group{
-      width: 480px;
+      //width: 480px;
 
       h5{
         font-size: 18px;
@@ -64,9 +69,11 @@
   }
 
   .history-section{
-    width: 1920px;
+    //width: 1920px;
     display: flex;
     justify-content: start;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     border-bottom: 1px solid #D1C7A3;
   }
@@ -77,6 +84,9 @@
     border-right: 1px solid #D1C7A3;
     padding: 22px;
 
+    img{
+      width: 100%;
+    }
   }
   .history-wrapper{
     width: 50%;

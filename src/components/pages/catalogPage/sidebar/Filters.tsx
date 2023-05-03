@@ -5,7 +5,6 @@ import {Dispatch} from 'redux';
 
 import {setQueryParams} from "components/pages/catalogPage/model/slice/queryParamsSlice";
 import {fetchProducts} from "../model/services/getProductDataFromApi";
-// import {store} from "store/store";
 
 import '../styles/sidebar.scss'
 
@@ -61,7 +60,6 @@ export const Filters = () => {
     }
 
     const params = createQueryParam(selectedCompanies, lessResult, moreResult);
-    // localStorage.setItem('filterParams', JSON.stringify(params));
     dispatch(setQueryParams(params));
     // @ts-ignore
     dispatch(fetchProducts(params));

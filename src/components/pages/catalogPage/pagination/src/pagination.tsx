@@ -11,7 +11,7 @@ export function getPaginationItems(
     }
   } else {
     const firstPage = 1;
-    const confirmedPagesCount = 3;
+    const confirmedPagesCount = 2;
     const deductedMaxLength = maxLength - confirmedPagesCount;
     const sideLength = Math.ceil(deductedMaxLength / 2);
 

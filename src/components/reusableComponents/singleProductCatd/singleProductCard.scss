@@ -1,5 +1,5 @@
 .card-container-flex{
-  width: 480px;
+  width: 475px;
   height: 532px;
   border: 1px solid #D1C7A3;
   border-top: 0;
@@ -7,8 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 22px;
+  padding: 28px;
 
+  &:last-child{
+    border-right: none;
+  }
 
   .product-description{
     padding: 0 10px;
@@ -27,8 +30,12 @@
   .product-image{
     display: flex;
     justify-content: center;
-    width: 436px;
+    width: 420px;
     height: 436px;
+
+    img{
+
+    }
   }
   .link{
     text-decoration: none;

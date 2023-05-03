@@ -3,15 +3,15 @@ import {useRoutes, Navigate} from 'react-router-dom'
 import { CatalogPage } from "components/pages";
 import {SingleProductPage} from "components/pages/singleProductPage/SingleProductPage";
 import {AboutUs} from "components/pages/aboutUsPage/AboutUs";
-import {Navbar} from "components/reusableComponents/navbar";
 import {ContactsLayout} from "components/pages/contactsPage/ContactsLayout";
 import {OurPartnersLayout} from "components/pages/partnersPage/OurPartnersLayout";
 import {CompanyLayout} from "components/pages/companyPage/CompanyLayout";
 import { AccauntMain } from 'components/PersonalAccaunt/AccauntMain';
+import {HomePage} from "components/pages/homePage/HomePage";
 
 export const RouterProvider = () => {
   const element = useRoutes([
-    { path: '/', element: <Navbar/>},
+    { path: '/', element: <HomePage/>},
     {path: '/products/', element: <CatalogPage/> },
     {path: '/products/:id/', element: <SingleProductPage/>},
     {path: '/contacts', element: <ContactsLayout/>},

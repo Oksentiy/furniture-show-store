@@ -15,7 +15,7 @@ import './styles/catalogLayout.scss'
 const defaultValue = {
   current_page: 1,
   per_page: 12,
-  total_count: 15,
+  total_count: 20,
   total_pages: 2,
 }
 export const CatalogPage = () => {

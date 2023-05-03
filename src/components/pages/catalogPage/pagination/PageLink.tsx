@@ -2,17 +2,17 @@ import { HTMLProps } from 'react';
 import cn from 'classnames';
 import './styles/pageLink.scss';
 
-export type Props = HTMLProps<HTMLAnchorElement> & { active?: boolean };
+export type Props = HTMLProps<HTMLAnchorElement> & { activeBtn?: boolean };
 
 export const PageLink = ({
  className,
- active,
+ activeBtn,
  disabled,
  children,
  ...otherProps
 }: Props) => {
   const customClassName = cn('page-link', className, {
-    active,
+    activeBtn,
     disabled,
   });
 
@@ -23,7 +23,7 @@ export const PageLink = ({
   return (
     <a
       className={customClassName}
-      aria-current={active ? 'page' : undefined}
+      aria-current={activeBtn ? 'page' : undefined}
       {...otherProps}
     >
       {children}

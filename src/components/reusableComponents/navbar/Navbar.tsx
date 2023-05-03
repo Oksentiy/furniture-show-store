@@ -1,10 +1,11 @@
 import {useEffect, useRef, useState} from "react";
 import {Link, NavLink} from "react-router-dom";
-import './navar.scss'
-import icon from '../img/shopping-basket-icon.png'
-import navPhoto from '../img/nav_photo.png'
 import { AllPopup } from "components/LogRegModal/AllPopup";
 import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
+
+import icon from '../img/shopping-basket-icon.png'
+import navPhoto from '../img/nav_photo.png'
+import './navbar.scss'
 
 export const Navbar = () => {
   const [showBasket,setShowBasket] = useState(false);
