@@ -161,7 +161,7 @@ export const BasketContainer: React.FC<BasketContainerProps> = ({ active, setAct
                 </div>
                 <div className='basket-container__make-an-order'>
                     <button onClick={() => setActive(false)}><h2>Continue shopping</h2></button>
-                    {dataBasket.length===0?<></>:<NavLink onClick={() => setActive(false)} to={`/show-page/checkout`}><button><h2>create an order</h2></button></NavLink>}                    
+                    {dataBasket.length===0?<></>:<NavLink onClick={() => setActive(false)} to={`/checkout`}><button><h2>create an order</h2></button></NavLink>}                    
                 </div>    
                 </div> :
                     <h3>You need to logIn</h3>}
