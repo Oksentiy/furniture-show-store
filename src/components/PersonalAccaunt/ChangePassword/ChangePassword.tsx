@@ -36,9 +36,7 @@ export const ChangePassword: React.FC = () => {
     return (
         <div className='change-password'>
             {showChangePassword ? <div>
-                
-                    
-                
+
                     <div>
                         <FormField
                             placeholder='Введіть новий пароль...'
