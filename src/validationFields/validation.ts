@@ -16,12 +16,16 @@ export const validationEntrance = (number: string)=>{
     return mistake;
 }
 
-
 export const validationEmail = (email:string) => {
     if (email === '') return 'empty'; // return 'empty'
-    if (!(/^\w[\w\d]*@\w+\.\w+$/gi.test(email))) return 'invalid email';
+    if (!(/^[a-zA-Z_.-1234567890]{1,32}@[a-z]{1,5}\.[a-z]{2,7}$/gi.test(email))) return 'invalid email';
     return 'nomistake';
 }
+// export const validationEmail = (email:string) => {
+//     if (email === '') return 'empty'; // return 'empty'
+//     if (!(/^\w[\w\d]*@\w+\.\w+$/gi.test(email))) return 'invalid email';
+//     return 'nomistake';
+// }
 
 export const validationConfirmToken = (token:string) =>{
     if(token === '') return 'empty';
@@ -84,7 +88,7 @@ export const validationNameKir = (name:string) => {
 
 
   export const validationNameKirLat = (name:string) => {
-
+    if (name === '') return 'empty'; // return 'empty'
     if (/^[а-яА-Я]/.test(name)) {
         let mistake = '';
         if (name === '') return 'empty'; // return 'empty'
