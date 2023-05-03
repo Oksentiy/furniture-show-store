@@ -8,6 +8,7 @@ import { registrationValue } from '../../../formValues/formValues';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../storeToolkit';
 import { modalIsAction } from '../../../storeToolkit/isLogModalSlice';
+import { postRegistrationResource } from '../../../utils/helpfulFunction';
 
 interface RegistrationPageProps {
     setPopup: (value:string) => void;
@@ -17,27 +18,43 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
     const dispatch = useDispatch();
     const [disabled, setDisabled] = useState(true);
     const [registrationForm, setRegistrationForm] = useState(registrationValue);
+    const [registrationError,setRegistrationError] = useState('');
 
     const activeModal = useSelector((state: RootState) =>state.logReg.modalAction);
+
+    const getResource = async (url:string,name:string,email:string,password:string) => {
+        const res = await postRegistrationResource(url,name,email,password);
+        if (res) {
+            setPopup('login');
+            setRegistrationError('');
+        } else {
+            setRegistrationError('хтось натупив');
+            console.log('something going wrong');
+        }
+
+    }
+
+
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('registration is submit');
             console.log(registrationForm);
-            fetch('https://shyfonyer.shop/api/v1/users', {
-                method: 'POST',
-                body: JSON.stringify({
-                    full_name: registrationForm.first_name,
-                    email: registrationForm.email,
-                    password: registrationForm.password,
-                }),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-            })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-                setPopup('login');        
+            getResource('https://shyfonyer.shop/api/v1/users',registrationForm.first_name,registrationForm.email,registrationForm.password,);
+            // fetch('https://shyfonyer.shop/api/v1/users', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         full_name: registrationForm.first_name,
+            //         email: registrationForm.email,
+            //         password: registrationForm.password,
+            //     }),
+            //     headers: {
+            //         'Content-type': 'application/json; charset=UTF-8',
+            //     },
+            // })
+            //     .then((response) => response.json())
+            //     .then((json) => console.log(json));
+            //     setPopup('login');        
     }
 
     const setRegistrationValue = (key: string, value: string) => {
@@ -62,10 +79,10 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
 
                 <form onSubmit={handleSubmit} action="">
                     <div>
-                        <h1>Registration</h1>
+                        <h1>РЕЄСТРАЦІЯ</h1>
                         <FormField
-                            placeholder='Enter your name...'
-                            label='Your name:'
+                            placeholder='Введіть ваше ім’я'
+                            label='Ім’я'
                             type='text'
                             name='first_name'
                             id='first_name'
@@ -76,8 +93,8 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
                             {first_nameRegistrationError === 'nomistake' ? '' : first_nameRegistrationError}
                         </p>
                         <FormField
-                            placeholder='Enter your email...'
-                            label='Email:'
+                            placeholder='Введіть електронну пошту'
+                            label='Електронна пошта'
                             type='email'
                             name='email'
                             id='email'
@@ -88,8 +105,8 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
                             {emailRegistrationError === 'nomistake' ? '' : emailRegistrationError}
                         </p>
                         <FormField
-                            placeholder='Enter your password...'
-                            label='Enter the password:'
+                            placeholder='Введіть пароль'
+                            label='Пароль'
                             type='password'
                             name='password'
                             id='password'
@@ -100,8 +117,8 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
                             {passwordRegistrationError === 'nomistake' ? '' : passwordRegistrationError}
                         </p>
                         <FormField
-                            placeholder='Confirm your password...'
-                            label='Confirm the password:'
+                            placeholder='Повторіть пароль'
+                            label='Повторіть пароль'
                             type='password'
                             name='confirmPassword'
                             id='confirmPassword'
@@ -111,10 +128,11 @@ export const RegistrationPage:  React.FC<RegistrationPageProps> = ({ setPopup })
                         <p className="red__mistake">
                             {confirmPasswordError === 'nomistake' ? '' : confirmPasswordError}
                         </p>
+                        <p className="red__mistake">{registrationError}</p>
                     </div>
-                    <button type="submit" disabled={disabled}>Submit</button>
+                    <button className='modal__submit-registration' type="submit" disabled={disabled}>ЗАРЕЄСТРУВАТИСЯ</button>
                 </form>
-                <p>Have accaunt?<span onClick={()=>setPopup('login')} className='login__registration'>LogIn</span></p>
+                <p>Вже маєте акаунт?<span onClick={()=>setPopup('login')} className='login__registration'>Увійдіть!</span></p>
             </div>
         </div>
     );
