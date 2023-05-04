@@ -9,6 +9,8 @@ import {CompanyLayout} from "components/pages/companyPage/CompanyLayout";
 import { AccauntMain } from 'components/PersonalAccaunt/AccauntMain';
 import { Checkout } from 'components/Basket/Checkout';
 import {HomePage} from "components/pages/homePage/HomePage";
+import {PrivacyPolicyPage} from "components/pages/privacyPolicyPage/PrivacyPolicyPage";
+import {QuestionPage} from "components/pages/questionPage/QuestionPage";
 
 export const RouterProvider = () => {
   const element = useRoutes([
@@ -22,8 +24,8 @@ export const RouterProvider = () => {
     {path: '/blum/4', element: <CompanyLayout />},
     {path: '/kolss/5', element: <CompanyLayout />},
     {path: '/about_us', element: <AboutUs/>},
-    {path: '/questions', element: <h1> F.A.Q. </h1>},
-    {path: '/privacy_policy', element: <h1> Політика конфіденційності </h1>},
+    {path: '/questions', element: <QuestionPage/>},
+    {path: '/privacy_policy', element: <PrivacyPolicyPage/>},
     {path: '/our_partners', element: <OurPartnersLayout/>},
     {path: '/personal-accaunt/*', element: <AccauntMain/>},
     {path: '/checkout/*', element: <Checkout/>},
@@ -36,5 +38,3 @@ export const RouterProvider = () => {
     </>
   );
 }
-
-

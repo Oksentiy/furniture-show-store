@@ -1,0 +1,33 @@
+.privacy-policy-layout{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  background-color: #EBE6D7;
+  .title{
+    width: 25%;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding-left: 40px;
+    padding-top: 66px;
+  }
+  .policy-information{
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    width: 700px;
+    border-left: 1px solid #D1C7A3;
+    padding: 66px 0 120px 85px;
+
+  }
+  .policy-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    p{
+      font-weight: 300;
+    }
+  }
+}

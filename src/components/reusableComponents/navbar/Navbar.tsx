@@ -29,13 +29,13 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
-      <div className="navbar__burger-menu" onClick={toggleBurgerMenu}>
+    <nav className="navbar" ref={navRef}>
+      <div className="navbar__burger-menu" onClick={toggleBurgerMenu} >
         <div className="navbar__burger-menu__line"/>
         <div className="navbar__burger-menu__line"/>
         <div className="navbar__burger-menu__line"/>
       </div>
-      <div className={`navbar__menu ${isBurgerMenuOpen ? 'open' : ''}`} ref={navRef}>
+      <div className={`navbar__menu ${isBurgerMenuOpen ? 'open' : ''}`} >
         <div className="navbar-wrapper">
           <ul className="navbar__menu__links">
             <li className="navbar__menu__title">
@@ -91,7 +91,7 @@ export const Navbar = () => {
         </div>
         <div className="logo">
           <NavLink to='/'>
-            <h3> SHIFON'YER </h3>
+            <h3> SHYFON'YER </h3>
           </NavLink>
 
         </div>

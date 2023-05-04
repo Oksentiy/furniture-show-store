@@ -9,17 +9,19 @@ import './styles/productPageLayout.scss'
 export const SingleProductPage = () => {
 
   return(
-    <div className='product-page-layout'>
+    <>
       <Navbar/>
-      <ProductCard/>
-      <div className="title-recommended">
-        <h2>Рекомендовані товари</h2>
+      <div className='product-page-layout'>
+        <ProductCard/>
+        <div className="title-recommended">
+          <h2>Рекомендовані товари</h2>
+        </div>
+        <div className="recommended-products">
+          <RecommendedProducts/>
+        </div>
+        <BackToTop/>
       </div>
-      <div className="recommended-products">
-        <RecommendedProducts/>
-      </div>
-      <BackToTop/>
       <Footer/>
-    </div>
+    </>
   )
 }
