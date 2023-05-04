@@ -9,20 +9,12 @@
     align-items: center;
     justify-content: center;
     transform: scale(0);
-
     /* transition: 2s; */
 }
 .active {
     transform: scale(1);
 }
 .modal__content {
-    .modal__button-submit{
-        display: block;
-        color:black;
-        border: 1px solid black;
-        background-color: #645832;
-        padding: 10px 100px;
-    }
     padding: 20px;
     /* border-radius: 12px; */
     background-color: #EBE6D7;
@@ -40,14 +32,31 @@
 }
 .login__footer{
     display: flex;
+    width: 448px;
+    margin: 0px auto;
+    justify-content: space-between;
 }
 .login__footer__checkbox{
-    padding-left: 150px;
+    vertical-align: middle;
+    input{
+        display:inline-block;
+        width:18px;
+        height:18px;
+        margin-right: 5px;
+        cursor:pointer;
+    }
+    color: #1F1F1F;
+    font-weight: 400;
+    font-size: 18px;
 }
 .login__footer__forgot{
-    padding-left: 50px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #78808a;
+    cursor:pointer;
 }
 .login__registration{
-    color: blue;
+    color: #004AA5;
     margin-left: 10px;
+    cursor:pointer;
 }

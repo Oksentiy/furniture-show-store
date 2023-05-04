@@ -7,6 +7,7 @@ import {ContactsLayout} from "components/pages/contactsPage/ContactsLayout";
 import {OurPartnersLayout} from "components/pages/partnersPage/OurPartnersLayout";
 import {CompanyLayout} from "components/pages/companyPage/CompanyLayout";
 import { AccauntMain } from 'components/PersonalAccaunt/AccauntMain';
+import { Checkout } from 'components/Basket/Checkout';
 import {HomePage} from "components/pages/homePage/HomePage";
 
 export const RouterProvider = () => {
@@ -25,6 +26,7 @@ export const RouterProvider = () => {
     {path: '/privacy_policy', element: <h1> Політика конфіденційності </h1>},
     {path: '/our_partners', element: <OurPartnersLayout/>},
     {path: '/personal-accaunt/*', element: <AccauntMain/>},
+    {path: '/checkout/*', element: <Checkout/>},
     {path: '*', element: <Navigate to="/notfound" replace/>},
   ])
 

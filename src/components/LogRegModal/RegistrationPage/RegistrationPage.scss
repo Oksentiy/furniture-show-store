@@ -10,6 +10,18 @@
     justify-content: center;
     transform: scale(0);
     /* transition: 2s; */
+    .modal__submit-registration{
+        width: 448px;
+        background-color: #645832;
+        font-size: 18px;
+        font-weight: 400;
+        color: #EFEAE7;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        padding: 10px;
+        border: 1px solid black;
+        margin: 30px auto;
+    }
 }
 .active {
     transform: scale(1);
@@ -26,10 +38,13 @@
     width: min-content;
 }
 .red__mistake{
+    font-size: 14px;
+    font-weight: 400;
     color: red;
     margin-top: 0px;
 }
 .login__registration{
-    color:blue;
+    color:#004AA5;
     margin-left: 10px;
+    cursor:pointer;
 }

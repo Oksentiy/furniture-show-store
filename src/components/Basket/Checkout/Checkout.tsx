@@ -5,6 +5,8 @@ import { CheckoutBasket } from '../CheckoutBasket';
 import { Contactinformation } from '../Contactinformation';
 
 import './Checkout.scss';
+import { Navbar } from 'components/reusableComponents/navbar';
+import { Footer } from 'components/reusableComponents/footer';
 
 export const Checkout: React.FC = () => {
     const [showInformation, setShowInformation] = useState<boolean>(false);
@@ -12,6 +14,8 @@ export const Checkout: React.FC = () => {
     const [showPayment, setShowPayment] = useState<boolean>(false);
 
     return (
+        <div>
+            <Navbar />
         <div className='checkout'>
             <div className='checkout-left'>
                 <h1 onClick={() => {
@@ -48,6 +52,8 @@ export const Checkout: React.FC = () => {
             <div className="checkout-right">
                 <CheckoutBasket />
             </div>
+        </div>
+        <Footer />
         </div>
     );
 }
