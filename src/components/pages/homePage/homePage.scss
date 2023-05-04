@@ -1,0 +1,292 @@
+.top-home-section{
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
+  width: 100%;
+  height: 998px;
+  //padding: 400px;
+
+  .navbar-home-page{
+    //position: fixed;
+    background: transparent;
+    border-bottom: none;
+    color: #FFFFFF;
+  }
+  .header-text{
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+
+      &:last-child{
+        margin-bottom: 44px;
+      }
+    }
+  }
+}
+
+.redirect-to-catalog{
+  width: 178px;
+  height: 44px;
+  color: black;
+  background-color: #EBE6D7;
+  border: 1px solid #D1C7A3;
+  text-transform: uppercase;
+  border-radius: 5px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+.navbar-home{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.navbar-menu-home-page{
+  position: relative;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  height: 76px;
+  padding: 0 22px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+
+  a{
+    color: #FFFFFF;
+  }
+  .logo a h3{
+    color: #FFFFFF;
+  }
+
+}
+.navbar__menu__links li a{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.home-burger{
+  background-color: #FFFFFF;
+}
+.navbar-scrolled {
+  background-color:#EBE6D7 ;
+}
+
+.about-us-section{
+  position: relative;
+  padding: 440px 0;
+  //height: 1920px;
+  background-color: #EBE6D7;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .text-wrapper{
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    h2{
+      font-size: 60px;
+      font-family: 'Playfair Display', serif;
+      text-transform: uppercase;
+    }
+
+    p{
+      font-family: 'Open Sans', sans-serif;
+      color: #1F1F1F;
+      font-weight: 300;
+      margin-top: 20px;
+    }
+    button{
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      background-color: #EBE6D7;
+      border: 1px solid #D1C7A3;
+      border-radius: 5px;
+      color: #1F1F1F;
+      padding: 10px 34px;
+      margin-top: 30px;
+
+    }
+  }
+
+  .home-img-1{
+    width: 440px;
+    height: 338px;
+    position: absolute;
+    top:6%;
+    left: 38%;
+  }
+  .home-img-2{
+    width: 226px;
+    height: 172px;
+    position: absolute;
+    top:25%;
+    left: 68%;
+  }
+  .home-img-3{
+    width: 306px;
+    height: 240px;
+    position: absolute;
+    top:25%;
+    left: 5%;
+  }
+  .home-img-4{
+    width: 268px;
+    height: 288px;
+    position: absolute;
+    top:45%;
+    left: 85%;
+  }
+  .home-img-5{
+    width: 538px;
+    height: 374px;
+    position: absolute;
+    top:50%;
+    left: 1%;
+  }
+  .home-img-6{
+    width: 480px;
+    height: 386px;
+    position: absolute;
+    top:63%;
+    left: 56%;
+  }
+}
+
+.company-products-section{
+  background-color: #EBE6D7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    border-top: 1px solid #D1C7A3;
+    border-bottom:  1px solid #D1C7A3;
+    padding: 38px;
+
+  }
+
+  .open-catalog{
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #D1C7A3;
+    height: 71px;
+    width: 100%;
+
+    a{
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #1F1F1F;
+    }
+  }
+}
+
+.partners-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #EBE6D7;
+  padding-bottom: 120px;
+
+  h2{
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    text-transform: uppercase;
+    color: #000000;
+    margin-top: 120px;
+    margin-bottom: 40px;
+  }
+  .partner-subtitle{
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 60px;
+  }
+
+  .partners-container{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    //flex-wrap: wrap;
+
+    .partner-card{
+      width: 640px;
+      padding: 20px;
+      border: 1px solid #D1C7A3;
+      border-right: none;
+
+    }
+    .company-img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 489px;
+    }
+    .partner-title{
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      margin-bottom: 48px;
+    }
+    .partner-description{
+      font-family: 'Open Sans', sans-serif;
+      color: #1F1F1F;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    a{
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      color: #1F1F1F;
+    }
+  }
+  .link-partners-page{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px;
+    border-bottom: 1px solid #D1C7A3;
+
+    a{
+      font-family: 'Open Sans', sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #1F1F1F;
+    }
+  }
+}

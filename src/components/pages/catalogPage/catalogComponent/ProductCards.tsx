@@ -9,6 +9,11 @@ export const ProductCards: FC = () => {
   const [productsData, setProducts] = useState([])
   const data:any = useSelector((data: IRootState) => data.products.items);
 
+  // localStorage.setItem('filteredProducts', JSON.stringify(productsData));
+  // const filteredProductsFromLS = localStorage.getItem('filteredProducts')
+  // console.log('filteredProductsFromLS', filteredProductsFromLS)
+  // console.log(data)
+
   useEffect(() => {
     setProducts(data.products)
   },[data.products])

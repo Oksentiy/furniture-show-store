@@ -28,7 +28,6 @@ export const Pagination = ({
     dispatch(fetchProducts(`page=${currentPage}`)); // передаємо ідентифікатор користувача як аргумент
   },[currentPage])
 
-
   return (
     <nav className="pagination" aria-label="Pagination">
       <PageLink
@@ -40,7 +39,7 @@ export const Pagination = ({
       {pageNums.map((pageNum, idx) => (
         <PageLink
           key={idx}
-          active={currentPage === pageNum}
+          activeBtn={currentPage === pageNum}
           disabled={isNaN(pageNum)}
           onClick={() => setCurrentPage(pageNum)}
         >

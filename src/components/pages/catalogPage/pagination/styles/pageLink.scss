@@ -1,5 +1,5 @@
 .page-link {
-  position: relative;
+  position: inherit;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -36,11 +36,14 @@
 }
 
 .page-link:focus {
-  z-index: 3;
+  //z-index: 3;
 }
 
-.page-link.active {
-  z-index: 2;
+.page-link.activeBtn {
+  //z-index: 2;
+  position: inherit;
+
+  //display: contents;
   color: #D1C7A3;
   background-color: #645832;
 }
