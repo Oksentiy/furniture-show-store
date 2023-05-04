@@ -75,7 +75,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    border-bottom: 1px solid #D1C7A3;
+    //border-bottom: 1px solid #D1C7A3;
   }
   .img-wrapper{
     width: 50%;
@@ -107,10 +107,6 @@
   }
 
   .company-products-section{
-    //display: flex;
-    //flex-direction: column;
-    //justify-content: center;
-    //align-items: center;
 
     .title-wrapper{
       display: flex;
@@ -131,6 +127,7 @@
       justify-content: center;
       align-items: center;
       border-bottom: 1px solid #D1C7A3;
+      border-top: 1px solid #D1C7A3;
       height: 71px;
 
       a{

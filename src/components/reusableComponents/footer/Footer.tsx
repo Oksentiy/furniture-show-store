@@ -59,7 +59,7 @@ export const Footer = () => {
               +380 (94) 448 84 56
             </li>
             <li className="nav-links">
-              shyfonyersales@info.com
+              <a href="mailto:shyfonyersales@info.com">shyfonyersales@info.com</a>
             </li>
             <li className="nav-links">
               місто Черкаси, вул. П. Сагайдачного 150/2, 18005
@@ -70,7 +70,7 @@ export const Footer = () => {
           <img src={logo} alt="logo"/>
         </div>
         <div className="privacy-info">
-          <p>&copy; shifon'yer | 2023</p>
+          <p>&copy; shyfon'yer | 2023</p>
           <p>design & dev: geekhub interns</p>
         </div>
       </div>
