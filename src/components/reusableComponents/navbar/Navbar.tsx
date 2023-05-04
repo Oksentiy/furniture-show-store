@@ -5,9 +5,10 @@ import icon from '../img/shopping-basket-icon.png'
 import navPhoto from '../img/nav_photo.png'
 import { AllPopup } from "components/LogRegModal/AllPopup";
 import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
+import { LogInAndBasket } from "components/Basket/LogInAndBasket";
 
 export const Navbar = () => {
-  const [showBasket,setShowBasket] = useState(false);
+  // const [showBasket,setShowBasket] = useState(false);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -91,7 +92,7 @@ export const Navbar = () => {
         <div className="logo">
           <h3> SHIFON'YER </h3>
         </div>
-        <div className='auth-and-basket-wrapper'>
+        {/* <div className='auth-and-basket-wrapper'>
           
             <AllPopup />
           
@@ -101,7 +102,8 @@ export const Navbar = () => {
             
           </div>
           <BasketContainer active={showBasket} setActive={setShowBasket} />
-        </div>
+        </div> */}
+        <LogInAndBasket />
       </div>
     </nav>
   );
