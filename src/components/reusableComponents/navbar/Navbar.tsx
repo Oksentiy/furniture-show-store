@@ -2,13 +2,14 @@ import {useEffect, useRef, useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import { AllPopup } from "components/LogRegModal/AllPopup";
 import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
+import { LogInAndBasket } from "components/Basket/LogInAndBasket";
 
 import icon from '../img/shopping-basket-icon.png'
 import navPhoto from '../img/nav_photo.png'
 import './navbar.scss'
 
 export const Navbar = () => {
-  const [showBasket,setShowBasket] = useState(false);
+  // const [showBasket,setShowBasket] = useState(false);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -95,7 +96,7 @@ export const Navbar = () => {
           </NavLink>
 
         </div>
-        <div className='auth-and-basket-wrapper'>
+        {/* <div className='auth-and-basket-wrapper'>
           
             <AllPopup />
           
@@ -105,7 +106,8 @@ export const Navbar = () => {
             
           </div>
           <BasketContainer active={showBasket} setActive={setShowBasket} />
-        </div>
+        </div> */}
+        <LogInAndBasket />
       </div>
     </nav>
   );

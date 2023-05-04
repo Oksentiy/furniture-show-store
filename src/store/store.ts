@@ -8,6 +8,7 @@ import companySlice from 'storeToolkit/companySlice';
 import userSlice from 'storeToolkit/userSlice';
 import isLogModalSlice from 'storeToolkit/isLogModalSlice';
 import informationSlice from 'storeToolkit/informationSlice';
+import counterBasketSlice from 'storeToolkit/counterBasketSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     userMe:userSlice,
     logReg:isLogModalSlice,
     checkout:informationSlice,
+    counter:counterBasketSlice,
   },
 });
 
