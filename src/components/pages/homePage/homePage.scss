@@ -34,6 +34,10 @@
       font-size: 80px;
       text-transform: uppercase;
       color: #FFFFFF;
+
+      &:last-child{
+        margin-bottom: 44px;
+      }
     }
   }
 }
@@ -46,10 +50,29 @@
   border: 1px solid #D1C7A3;
   text-transform: uppercase;
   border-radius: 5px;
-  margin-top: 44px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+.navbar-home{
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
 
 .navbar-menu-home-page{
+  position: relative;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  height: 76px;
+  padding: 0 22px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+
   a{
     color: #FFFFFF;
   }
@@ -58,6 +81,10 @@
   }
 
 }
+.navbar__menu__links li a{
+  font-family: 'Open Sans', sans-serif;
+}
+
 .home-burger{
   background-color: #FFFFFF;
 }
@@ -104,6 +131,7 @@
       color: #1F1F1F;
       padding: 10px 34px;
       margin-top: 30px;
+
     }
   }
 

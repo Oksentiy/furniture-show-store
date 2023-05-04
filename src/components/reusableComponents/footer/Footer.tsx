@@ -70,7 +70,7 @@ export const Footer = () => {
           <img src={logo} alt="logo"/>
         </div>
         <div className="privacy-info">
-          <p>&copy; shifonyer | 2023</p>
+          <p>&copy; shifon'yer | 2023</p>
           <p>design & dev: geekhub interns</p>
         </div>
       </div>

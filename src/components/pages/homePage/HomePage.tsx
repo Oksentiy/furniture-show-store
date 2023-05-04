@@ -1,11 +1,14 @@
-import {Navbar} from "components/reusableComponents/navbar";
 import {Link, NavLink} from "react-router-dom";
-import heroImage from "./hero-image-background.png"
-
-import './homePage.scss'
+import axios from "axios";
+import {SingleProductCard} from "components/reusableComponents/singleProductCatd";
+import {Footer} from "components/reusableComponents/footer";
 import {AllPopup} from "components/LogRegModal/AllPopup";
 import {BasketContainer} from "components/Basket/BasketContainer/BasketContainer";
 import {useEffect, useRef, useState} from "react";
+
+import './homePage.scss'
+
+import heroImage from "./hero-image-background.png"
 import navPhoto from "components/reusableComponents/img/nav_photo.png";
 import whiteBasket from "components/reusableComponents/img/home-shopping-bascket.png";
 import blackBasket from "components/reusableComponents/img/shopping-basket-icon.png"
@@ -22,23 +25,28 @@ import jyskLogo from "components/reusableComponents/img/jysk-logo.png"
 import ikeaLogo from "components/reusableComponents/img/ikea-logo.png"
 import blumLogo from "components/reusableComponents/img/blum-logo.png"
 
-
-
-import {useSelector} from "react-redux";
-import {IRootState} from "components/pages/catalogPage/types";
-
-import {SingleProductCard} from "components/reusableComponents/singleProductCatd";
-import {Footer} from "components/reusableComponents/footer";
-// import {RecommendedProducts} from "components/pages";
-
 export const HomePage = () => {
   const [showBasket,setShowBasket] = useState(false);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const navRef = useRef(null);
-  const productData:any = useSelector((data: IRootState) => data.products.items);
+  const [recommendedProducts, setRecommendedProducts] = useState<any>()
+
+  useEffect(() => {
+    axios.get('https://shyfonyer.shop/api/v1/products')
+      .then(function (response) {
+        setRecommendedProducts(response.data.products)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },[])
+
   const toggleBurgerMenu = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
+
+  console.log(isBurgerMenuOpen)
+
   const handleClickOutside = (event: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setIsBurgerMenuOpen(false);
@@ -46,9 +54,9 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
@@ -64,20 +72,17 @@ export const HomePage = () => {
     };
   }, []);
 
-  console.log(productData)
-
   return (
     <>
-      {/*<Navbar/>*/}
       <div className="home-page-layout">
         <div className="top-home-section" style={{background: `url('${heroImage}')`, backgroundSize: '100% 100%'}}>
-          <nav className={scrolled ? 'navbar-scrolled navbar' : 'navbar-home-page navbar'}>
+          <nav className={scrolled || isBurgerMenuOpen ? 'navbar-scrolled navbar' : 'navbar-home-page navbar' } ref={navRef}>
             <div className="navbar__burger-menu" onClick={toggleBurgerMenu}>
-              <div className={scrolled ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
-              <div className={scrolled ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
-              <div className={scrolled ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
+              <div className={scrolled || isBurgerMenuOpen ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
+              <div className={scrolled || isBurgerMenuOpen ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
+              <div className={scrolled || isBurgerMenuOpen ? "navbar__burger-menu__line" : "navbar__burger-menu__line home-burger"}/>
             </div>
-            <div className={`navbar__menu ${isBurgerMenuOpen ? 'open' : ''}`} ref={navRef}>
+            <div className={`navbar__menu ${isBurgerMenuOpen ? 'open' : ''}`} >
               <div className="navbar-wrapper">
                 <ul className="navbar__menu__links">
                   <li className="navbar__menu__title">
@@ -127,7 +132,7 @@ export const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className={ scrolled ? "nav-wrapper" : "nav-wrapper navbar-menu-home-page"}>
+            <div className={ scrolled || isBurgerMenuOpen ? "nav-wrapper" : "nav-wrapper navbar-menu-home-page"}>
               <div className="catalog-link">
                 <Link to ='/products?page=1'>Каталог</Link>
               </div>
@@ -138,9 +143,7 @@ export const HomePage = () => {
 
               </div>
               <div className='auth-and-basket-wrapper'>
-
                 <AllPopup />
-
                 <div className="shopping-basket">
 
                   <img  onClick={()=>setShowBasket(true)} src={ scrolled ? blackBasket : whiteBasket} alt="shopping basket "/>
@@ -187,7 +190,8 @@ export const HomePage = () => {
           </div>
           <div className='recommended-products'>
             {
-              productData?.products.slice(0,4).map((data:any, index: number) => (
+              recommendedProducts &&
+              recommendedProducts?.slice(0,4).map((data:any, index: number) => (
                 <SingleProductCard key={index} {...data} />
               ))
             }

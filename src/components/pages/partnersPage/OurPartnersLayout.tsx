@@ -32,7 +32,7 @@ export const OurPartnersLayout = () => {
                     щоб допомогти клієнтам знайти найкращі рішення для їх простору.
                   </p>
                 </div>
-                <NavLink to='/ikea'> ДО ВИРОБНИКА</NavLink>
+                <NavLink to='/ikea/2'> ДО ВИРОБНИКА</NavLink>
               {/*</div>*/}
             </div>
           </div>
@@ -56,7 +56,7 @@ export const OurPartnersLayout = () => {
                   </p>
                 {/*</div>*/}
 
-                <NavLink to='/jysk'> ДО ВИРОБНИКА</NavLink>
+                <NavLink to='/jysk/3'> ДО ВИРОБНИКА</NavLink>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export const OurPartnersLayout = () => {
                     щоб забезпечити максимальний комфорт та функціональність меблів і
                     повною мірою задовольнити запити своїх клієнтів.
                   </p>
-                <NavLink to='/blum'> ДО ВИРОБНИКА</NavLink>
+                <NavLink to='/blum/4'> ДО ВИРОБНИКА</NavLink>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export const OurPartnersLayout = () => {
                     технології у своєму виробництві. Компанія також пропонує доставку та збірку
                     меблів для зручності клієнтів, і надає гарантію на свою продукцію.
                   </p>
-                <NavLink to='/kolss'> ДО ВИРОБНИКА</NavLink>
+                <NavLink to='/kolss/5'> ДО ВИРОБНИКА</NavLink>
               </div>
             </div>
           </div>
