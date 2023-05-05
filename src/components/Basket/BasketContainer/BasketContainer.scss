@@ -11,9 +11,11 @@
     /* transition: 2s; */
     .basket-container__content{
         margin-top: 76px;
+        margin-right: 25px;
         background-color: #EBE6D7;
         width: 938px;
-        height:fit-content; 
+        height: 600px; 
+        overflow-y: scroll;
         padding: 20px;
     }
     .basket-container__close-button{

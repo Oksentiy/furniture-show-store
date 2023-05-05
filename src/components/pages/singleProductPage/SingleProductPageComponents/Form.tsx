@@ -8,6 +8,7 @@ import {calculatePrice} from "components/pages/singleProductPage/SingleProductPa
 import '../styles/form.scss'
 import {useParams} from "react-router-dom";
 import {sendOrderData} from "components/pages/singleProductPage/SingleProductPageComponents/methods/postFormData";
+import { setCounterBasketElems } from "storeToolkit/counterBasketSlice";
 
 type Props = {
   setPrice: (data: number) => void,
@@ -31,6 +32,23 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
     product_width: 0,
   })
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+
+        fetch(`https://shyfonyer.shop/api/v1/cart_items`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(setCounterBasketElems(data.length));
+                console.log('basket length', data.length);
+            });
+    } 
+}, []);
 
 
   const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm<FormData>({
@@ -83,6 +101,24 @@ export const Form = ({setPrice, priceForThickness}: Props) => {
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    /////////////////////////////////////////////////
+    if (localStorage.getItem('token')) {
+
+      fetch(`https://shyfonyer.shop/api/v1/cart_items`, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+      })
+          .then((response) => response.json())
+          .then((data) => {
+              dispatch(setCounterBasketElems(data.length+1))
+              console.log('basket length', data.length);
+          })
+          .catch(error=>console.log(error));
+        }
+    /////////////////////////////////////////////////
     reset();
     setDataForPrice((prevProducts) => ({
       ...prevProducts,
