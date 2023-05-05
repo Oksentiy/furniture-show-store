@@ -6,26 +6,16 @@ import {IRootState} from "../types";
 import '../styles/productCards.scss'
 import {fetchProducts} from "components/pages/catalogPage/model/services/getProductDataFromApi";
 import {Dispatch} from "redux";
+import axios from "axios";
 
 export const ProductCards: FC = () => {
   const dispatch: Dispatch = useDispatch()
   const data:any = useSelector((data: IRootState) => data.products.items);
   const [productsData, setProducts] = useState([])
 
-  // localStorage.setItem('filteredParams', JSON.stringify(productsData));
+  localStorage.setItem('filteredParams', JSON.stringify(productsData));
   const filteredParamsFromLS = localStorage.getItem('filteredParams')
-
-  useEffect(() => {
-    if (filteredParamsFromLS !== 'undefined' && null ){
-      // @ts-ignore
-      dispatch(fetchProducts('page=1'));
-    }
-    else {
-      // @ts-ignore
-      dispatch(fetchProducts(filteredParamsFromLS));
-    }
-  },[])
-
+  const [filteredData, setFilteredData] = useState()
 
 
   useEffect(() => {

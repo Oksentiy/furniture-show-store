@@ -11,6 +11,7 @@ import { Checkout } from 'components/Basket/Checkout';
 import {HomePage} from "components/pages/homePage/HomePage";
 import {PrivacyPolicyPage} from "components/pages/privacyPolicyPage/PrivacyPolicyPage";
 import {QuestionPage} from "components/pages/questionPage/QuestionPage";
+import ScrollToTop from "components/reusableComponents/scrollToTop/ScrollToTop";
 
 export const RouterProvider = () => {
   const element = useRoutes([
@@ -34,6 +35,7 @@ export const RouterProvider = () => {
 
   return (
     <>
+      <ScrollToTop/>
       {element}
     </>
   );
