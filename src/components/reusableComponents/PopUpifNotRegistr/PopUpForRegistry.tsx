@@ -3,6 +3,8 @@ import close from 'components/reusableComponents/img/close.png'
 import './popupRegistry.scss'
 import {NavLink} from "react-router-dom";
 import {Dispatch, SetStateAction, useEffect, useRef, useState} from "react";
+import { useDispatch } from 'react-redux';
+import { modalIsAction } from 'storeToolkit/isLogModalSlice';
 
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
   setOpenAlertPopup: Dispatch<SetStateAction<boolean>>
 }
 export const PopUpForRegistry = ({openAlert, setOpenAlertPopup}: Props) => {
-
+const dispatch = useDispatch();
   const closePopup = () => {
     setOpenAlertPopup(false)
   }
@@ -29,7 +31,10 @@ export const PopUpForRegistry = ({openAlert, setOpenAlertPopup}: Props) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
+  const showModal = () => {
+    setOpenAlertPopup(false);
+    dispatch(modalIsAction(true));
+}
   return(
     <>
       {
@@ -40,7 +45,7 @@ export const PopUpForRegistry = ({openAlert, setOpenAlertPopup}: Props) => {
             <div className="popup-text">
               <h3>Вітаємо на SHYFON’YER!</h3>
               <p>Щоб рухатись далі будь ласка, авторизуйтесь.</p>
-                <button onClick={closePopup}>Авторизація</button>
+                <button onClick={showModal}>Авторизація</button>
             </div>
           </div>
         </div>
