@@ -24,6 +24,7 @@ import blumBg from "components/reusableComponents/img/blum-bg.png"
 import jyskLogo from "components/reusableComponents/img/jysk-logo.png"
 import ikeaLogo from "components/reusableComponents/img/ikea-logo.png"
 import blumLogo from "components/reusableComponents/img/blum-logo.png"
+import {BackToTop} from "components/reusableComponents/backToTop";
 
 export const HomePage = () => {
   const [showBasket,setShowBasket] = useState(false);
@@ -138,7 +139,7 @@ export const HomePage = () => {
               </div>
               <div className="logo">
                 <NavLink to='/'>
-                  <h3> SHIFON'YER </h3>
+                  <h3> SHYFON'YER </h3>
                 </NavLink>
 
               </div>
@@ -254,6 +255,7 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
+      <BackToTop/>
       <Footer/>
     </>
   )

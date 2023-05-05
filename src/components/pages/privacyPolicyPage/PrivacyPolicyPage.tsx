@@ -2,6 +2,7 @@ import {Navbar} from "components/reusableComponents/navbar";
 import {Footer} from "components/reusableComponents/footer";
 
 import './privacyPolicy.scss'
+import {BackToTop} from "components/reusableComponents/backToTop";
 
 export const PrivacyPolicyPage = () => {
 
@@ -78,6 +79,7 @@ export const PrivacyPolicyPage = () => {
           </div>
         </div>
       </div>
+      <BackToTop/>
       <Footer/>
     </>
   )

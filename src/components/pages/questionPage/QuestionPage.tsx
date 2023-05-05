@@ -2,7 +2,7 @@ import {Navbar} from "components/reusableComponents/navbar";
 import {Footer} from "components/reusableComponents/footer";
 
 import './questionPage.scss'
-
+import {BackToTop} from "components/reusableComponents/backToTop";
 export const QuestionPage = () => {
 
   return(
@@ -58,6 +58,7 @@ export const QuestionPage = () => {
           </div>
         </div>
       </div>
+      <BackToTop/>
       <Footer/>
     </>
   )
