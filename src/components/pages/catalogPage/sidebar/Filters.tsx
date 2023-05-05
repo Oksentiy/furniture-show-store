@@ -63,6 +63,9 @@ export const Filters = () => {
     dispatch(setQueryParams(params));
     // @ts-ignore
     dispatch(fetchProducts(params));
+    localStorage.setItem('filteredParams', JSON.stringify(params));
+
+    // console.log(params)
   }
 
   function createQueryParam(selectedCompany: string[], minPrice: string[], maxPrice: string[]): string {
