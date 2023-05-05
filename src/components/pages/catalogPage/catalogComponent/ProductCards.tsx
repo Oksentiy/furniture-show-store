@@ -1,18 +1,22 @@
 import {FC, useState, useEffect} from "react";
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {SingleProductCard} from "components/reusableComponents/singleProductCatd/SingleProductCard";
 import {IRootState} from "../types";
 import '../styles/productCards.scss'
+import {fetchProducts} from "components/pages/catalogPage/model/services/getProductDataFromApi";
+import {Dispatch} from "redux";
+import axios from "axios";
 
 export const ProductCards: FC = () => {
-  const [productsData, setProducts] = useState([])
+  const dispatch: Dispatch = useDispatch()
   const data:any = useSelector((data: IRootState) => data.products.items);
+  const [productsData, setProducts] = useState([])
 
-  // localStorage.setItem('filteredProducts', JSON.stringify(productsData));
-  // const filteredProductsFromLS = localStorage.getItem('filteredProducts')
-  // console.log('filteredProductsFromLS', filteredProductsFromLS)
-  // console.log(data)
+  localStorage.setItem('filteredParams', JSON.stringify(productsData));
+  const filteredParamsFromLS = localStorage.getItem('filteredParams')
+  const [filteredData, setFilteredData] = useState()
+
 
   useEffect(() => {
     setProducts(data.products)
