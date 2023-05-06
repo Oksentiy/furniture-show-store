@@ -7,7 +7,7 @@ import { validationEntrance, validationStreetKirLat } from '../../../validationF
 
 
 import './Delivery.scss';
-import { changeDisabledConfirm } from 'storeToolkit/changeDisabledSlice';
+import { changeDeliveryConfirm } from 'storeToolkit/changeDisabledSlice';
 
 interface addressValuesType {
     street: string;
@@ -31,6 +31,7 @@ export const Delivery: React.FC<DeliveryProps> = ({ openInformation, openDeliver
         const { value, checked } = e.target;
         if (checked) {
             setDeliveryType(value);
+            if(value==='pickup'){dispatch(changeDeliveryConfirm(true));}else{dispatch(changeDeliveryConfirm(false))}
         }
     }
     const handleDeliveryContinue = () => {
@@ -51,14 +52,26 @@ export const Delivery: React.FC<DeliveryProps> = ({ openInformation, openDeliver
     const setAddressValue = (key: string, value: string) => {
         setAddressForm({ ...addressForm, [key]: value });
     }
-    useEffect(()=>{
-        dispatch(changeDisabledConfirm(false));
-    },[]);
+
 
     const streetError = useMemo(() => validationStreetKirLat(addressForm.street), [addressForm.street]);
     const entranceError = useMemo(() => validationEntrance(addressForm.entrance), [addressForm.entrance]);
     const apartmentError = useMemo(() => validationEntrance(addressForm.apartment), [addressForm.apartment]);
     const houseError = useMemo(() => validationEntrance(addressForm.house), [addressForm.house]);
+
+    useEffect(()=>{
+        if(deliveryType==='address'){
+            console.log('last test')
+            console.log('lasssst',entranceError);
+            if(streetError==='nomistake' && entranceError==='nomistake' && apartmentError==='nomistake' && houseError==='nomistake'){
+                dispatch(changeDeliveryConfirm(true));
+            }else{
+                dispatch(changeDeliveryConfirm(false));
+            }
+        }
+
+        
+    },[addressForm]);
 
     return (
         <div className='delivery'>

@@ -5,7 +5,7 @@ import { contactInformationValue } from '../../../formValues/formValues';
 import { validationEmail, validationName, validationNameKir, validationNameKirLat, validationNumber } from '../../../validationFields/validation';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactInformation } from '../../../storeToolkit/informationSlice';
-import { changeDisabledConfirm } from 'storeToolkit/changeDisabledSlice';
+import { changeInformationConfirm } from 'storeToolkit/changeDisabledSlice';
 
 interface ContactinformationType {
     first_name: string;
@@ -45,14 +45,19 @@ export const Contactinformation: React.FC<ContactinformationProps> = ({ openInfo
         dispatch(addContactInformation(contactInformationForm));
     }
     useEffect(()=>{
-        dispatch(changeDisabledConfirm(false));
-    },[]);
+        if(first_nameRegistrationError==='nomistake' && second_nameRegistrationError==='nomistake' && emailRegistrationError==='nomistake' && numberRegistrationError==='nomistake'){
+            dispatch(changeInformationConfirm(true));
+        }else{
+            dispatch(changeInformationConfirm(false));
+        }
+        
+    },[contactInformationForm]);
 
     const first_nameRegistrationError = useMemo(() => validationNameKirLat(contactInformationForm.first_name), [contactInformationForm.first_name]);
     const second_nameRegistrationError = useMemo(() => validationNameKirLat(contactInformationForm.second_name), [contactInformationForm.second_name]);
     const emailRegistrationError = useMemo(() => validationEmail(contactInformationForm.email), [contactInformationForm.email]);
     const numberRegistrationError = useMemo(() => validationNumber(contactInformationForm.phone_number), [contactInformationForm.phone_number]);
-
+    
     return (
         <div className='contact-information'>
             <p>*Усі поля обов’язкові для заповнення</p>

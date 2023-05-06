@@ -12,6 +12,7 @@ export const validationName = (name:string) => {
 export const validationEntrance = (number: string)=>{
     let mistake ='';
     if (number === '') return 'порожнє поле';
+    if (/^\d+$/.test(number)) return 'nomistake';
     if(!/^\d+$/.test(number)) mistake = 'тільки числа';
     return mistake;
 }

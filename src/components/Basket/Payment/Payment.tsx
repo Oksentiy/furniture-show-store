@@ -16,9 +16,7 @@ export const Payment: React.FC = () => {
             dispatch(changeDisabledConfirm(true));
         }
     }
-    useEffect(()=>{
-        dispatch(changeDisabledConfirm(false));
-    },[]);
+
 
     useEffect(()=>{
             dispatch(addAddress(paymentType));

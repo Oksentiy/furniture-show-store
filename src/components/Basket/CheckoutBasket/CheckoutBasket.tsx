@@ -25,6 +25,8 @@ export const CheckoutBasket = () =>{
     
     const checkoutData = useSelector((state:any)=>state.checkout);
     const setDisabledFrom = useSelector((state:any)=>state.disabled.confirmOrder);
+    const setDeliveryFrom = useSelector((state:any)=>state.disabled.confirmDelivery);
+    const setInformationFrom = useSelector((state:any)=>state.disabled.confirmOrder);
     console.log(setDisabledFrom);
 
     let showTotalPrice = 0;
@@ -82,6 +84,10 @@ export const CheckoutBasket = () =>{
         }
     }
 
+    // useEffect(()=>{
+
+    // },[]);
+
     useEffect(() => {
         if (localStorage.getItem('token')) {
             fetch(`https://shyfonyer.shop/api/v1/cart_items`, {
@@ -106,7 +112,7 @@ export const CheckoutBasket = () =>{
         <div className='checkout-basket'>
             {showOrders}
             <p className='checkout-basket__total_summ'>Загальна сумма: {showTotalPrice} грн</p>
-            <NavLink to={'/checkout-successfully'}><button disabled={!setDisabledFrom} className='checkout-basket__submit' onClick={handleCreateAnOrder}>ОФОРМИТИ ЗАМОВЛЕННЯ</button></NavLink>
+            <NavLink to={'/checkout-successfully'}><button disabled={!(setDisabledFrom && setDeliveryFrom && setInformationFrom)} className='checkout-basket__submit' onClick={handleCreateAnOrder}>ОФОРМИТИ ЗАМОВЛЕННЯ</button></NavLink>
         </div>
     );
 }
