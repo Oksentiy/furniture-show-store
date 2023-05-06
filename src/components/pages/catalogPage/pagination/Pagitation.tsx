@@ -7,6 +7,7 @@ import {PageLink} from './PageLink';
 import { getPaginationItems } from './src/pagination'
 
 import './styles/Pagination.scss';
+import {useNavigate} from "react-router-dom";
 
 export type Props = {
   currentPage: number;
@@ -23,9 +24,12 @@ export const Pagination = ({
 
   const dispatch:Dispatch = useDispatch()
   const pageNums = getPaginationItems(currentPage, lastPage, maxLength);
+  const navigate = useNavigate();
+
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchProducts(`page=${currentPage}`)); // передаємо ідентифікатор користувача як аргумент
+    navigate({ search: `page=${currentPage}` });
   },[currentPage])
 
   return (

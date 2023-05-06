@@ -46,8 +46,6 @@ export const HomePage = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
 
-  console.log(isBurgerMenuOpen)
-
   const handleClickOutside = (event: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node)) {
       setIsBurgerMenuOpen(false);

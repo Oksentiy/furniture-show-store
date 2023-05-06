@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import { AllPopup } from "components/LogRegModal/AllPopup";
 import { BasketContainer } from "components/Basket/BasketContainer/BasketContainer";
 import { LogInAndBasket } from "components/Basket/LogInAndBasket";
@@ -28,6 +28,13 @@ export const Navbar = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    window.location.reload();
+    window.location.assign('/products');
+  }
 
   return (
     <nav className="navbar" ref={navRef}>
@@ -88,7 +95,7 @@ export const Navbar = () => {
       </div>
       <div className="nav-wrapper">
         <div className="catalog-link">
-          <Link to ='/products?page=1'>Каталог</Link>
+          <NavLink to ='/products?page=1' onClick={handleClick}>Каталог</NavLink>
         </div>
         <div className="logo">
           <NavLink to='/'>
