@@ -64,13 +64,13 @@ export const validationNumber = (number:string) => {
     if (number === '') return ''; // return 'empty'
     if (!(/^\d\d{8}\d$/gi.test(number) || /^\d\d{10}\d$/gi.test(number))) return 'Некоректний формат даних ';
     if (/^\d\d{8}\d$/gi.test(number)) {
-        if (!(/^0[96][3687]\d{6}\d$/gm.test(number))) {
+        if (!(/^0[3965][0123456789]\d{6}\d$/gm.test(number))) {
             return 'Некоректний формат даних ';
         } else {
 
         }
     } else if (/^\d\d{10}\d$/gi.test(number)) {
-        if (!(/^380[96][3687]\d{6}\d$/gm.test(number))) {
+        if (!(/^380[3596][0123456789]\d{6}\d$/gm.test(number))) {
             return 'Некоректний формат даних ';
         }
     }
