@@ -1,7 +1,16 @@
 .checkout{
-    margin-top: 76px;
     display: flex;
     .checkout-left{
+        .checkout-left__open-title-cursor{
+            cursor: pointer;
+        }
+        .checkout-left__open-title{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 42px;
+            color: black;
+            border-bottom: 1px solid #D1C7A3;
+        }
         padding: 15px;
         flex-grow: 4;
         background-color: #FFFFFF;
