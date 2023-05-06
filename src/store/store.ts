@@ -9,6 +9,8 @@ import userSlice from 'storeToolkit/userSlice';
 import isLogModalSlice from 'storeToolkit/isLogModalSlice';
 import informationSlice from 'storeToolkit/informationSlice';
 import counterBasketSlice from 'storeToolkit/counterBasketSlice';
+import changeDisabledSlice from 'storeToolkit/changeDisabledSlice';
+
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +22,7 @@ export const store = configureStore({
     logReg:isLogModalSlice,
     checkout:informationSlice,
     counter:counterBasketSlice,
+    disabled:changeDisabledSlice,
   },
 });
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './CheckoutBasket.scss';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 interface DataBasketElem {
     article_number: string;
@@ -21,20 +22,25 @@ interface DataBasketElem {
 
 export const CheckoutBasket = () =>{
     const [dataBasket, setDataBasket] = useState<DataBasketElem[] | any[]>([]);
-    const checkoutData = useSelector((state:any)=>state.checkout);
     
+    const checkoutData = useSelector((state:any)=>state.checkout);
+    const setDisabledFrom = useSelector((state:any)=>state.disabled.confirmOrder);
+    console.log(setDisabledFrom);
+
+    let showTotalPrice = 0;
     const showOrders = dataBasket.sort((a, b) => +a.id > +b.id ? 1 : -1).map((elem) => {
+        showTotalPrice += +elem.total_price;
         return <div key={elem.article_number + elem.total_price + elem.product_color.name} className='checkout-basket__one_order'>
             <div>
                 <img src={elem.product_photo} alt="facade" />
             </div>
-            <div>
-                <h1>facade {elem.company} {elem.product_name}</h1>
-                <p>Quantity: {elem.quantity}</p>
-                <p>Size: {elem.product_length} x {elem.product_width}</p>
-                <p>Color: {elem.product_color.name}</p>
-                <p>Price m2: {elem.product_price}</p>
-                <p>Need to pay: {elem.total_price}</p>
+            <div className='checkout-basket__one_order__right-block'>
+                <h1>Фасад {elem.company} {elem.product_name}</h1>
+                <p>Кількість: <span>{elem.quantity}</span></p>
+                <p>Розмір: <span>{elem.product_length} x {elem.product_width} мм</span></p>
+                <p>Колір: <span>{elem.product_color.name}</span></p>
+                <p>ціна за м2: <span> {elem.product_price} грн</span></p>
+                <p>До сплати: <span> {elem.total_price} грн</span></p>
             </div>
         </div>
     });
@@ -99,7 +105,8 @@ export const CheckoutBasket = () =>{
     return (
         <div className='checkout-basket'>
             {showOrders}
-            <button onClick={handleCreateAnOrder}>ОФОРМИТИ ЗАМОВЛЕННЯ</button>
+            <p className='checkout-basket__total_summ'>Загальна сумма: {showTotalPrice} грн</p>
+            <NavLink to={'/checkout-successfully'}><button disabled={!setDisabledFrom} className='checkout-basket__submit' onClick={handleCreateAnOrder}>ОФОРМИТИ ЗАМОВЛЕННЯ</button></NavLink>
         </div>
     );
 }

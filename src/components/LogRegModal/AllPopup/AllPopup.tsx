@@ -35,7 +35,7 @@ export const AllPopup = () => {
         if (localStorage.getItem('loginUser') !== null && localStorage.getItem('loginUser') !== 'undefined') {
             setWhoIsLogged(localStorage.getItem('loginUser'));
 
-        } else { setWhoIsLogged('empty'); }
+        } else { setWhoIsLogged(''); }
     }, [activeModal, isLog]);
 
     const showModal = () => {

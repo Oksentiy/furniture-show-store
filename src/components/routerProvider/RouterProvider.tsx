@@ -11,6 +11,7 @@ import { Checkout } from 'components/Basket/Checkout';
 import {HomePage} from "components/pages/homePage/HomePage";
 import {PrivacyPolicyPage} from "components/pages/privacyPolicyPage/PrivacyPolicyPage";
 import {QuestionPage} from "components/pages/questionPage/QuestionPage";
+import { CheckoutSuccessfully } from 'components/Basket/CheckoutSuccessfully';
 
 export const RouterProvider = () => {
   const element = useRoutes([
@@ -29,6 +30,7 @@ export const RouterProvider = () => {
     {path: '/our_partners', element: <OurPartnersLayout/>},
     {path: '/personal-accaunt/*', element: <AccauntMain/>},
     {path: '/checkout/*', element: <Checkout/>},
+    {path: '/checkout-successfully', element: <CheckoutSuccessfully/>},
     {path: '*', element: <Navigate to="/notfound" replace/>},
   ])
 
